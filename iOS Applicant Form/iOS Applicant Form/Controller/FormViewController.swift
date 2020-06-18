@@ -10,6 +10,12 @@ import UIKit
 
 class FormViewController: UIViewController {
 
+    @IBOutlet weak var fullNameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var projectRepoTextField: UITextField!
+    @IBOutlet weak var projectURLTextField: UITextField!
+    @IBOutlet weak var bpOOPTextField: UITextField!
+    @IBOutlet weak var modularDevTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,6 +23,8 @@ class FormViewController: UIViewController {
     }
 
 
+    @IBAction func submitButtonTouchUpAction(_ sender: Any) {
+    }
     /*
     // MARK: - Navigation
 

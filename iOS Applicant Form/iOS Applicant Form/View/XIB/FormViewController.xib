@@ -9,6 +9,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FormViewController" customModule="iOS_Applicant_Form" customModuleProvider="target">
             <connections>
+                <outlet property="bpOOPTextField" destination="YNr-Pi-KaR" id="UBd-0u-8xo"/>
+                <outlet property="emailTextField" destination="qjV-iv-ynH" id="AfW-LL-28A"/>
+                <outlet property="fullNameTextField" destination="E6g-1d-abT" id="dr6-a6-eY8"/>
+                <outlet property="modularDevTextField" destination="kMX-cq-cop" id="Kup-hy-lFC"/>
+                <outlet property="projectRepoTextField" destination="Mfs-7q-0X7" id="rOB-BB-jN4"/>
+                <outlet property="projectURLTextField" destination="uSO-Uv-4CS" id="9he-kd-6Bi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,7 +23,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="fgA-qd-Iuj" userLabel="root stack view">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="fgA-qd-Iuj" userLabel="root stack view">
                     <rect key="frame" x="31" y="210" width="352" height="486"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="NAc-dP-F1s" userLabel="no button stack view">
@@ -102,6 +108,9 @@
                             <rect key="frame" x="0.0" y="447" width="352" height="39"/>
                             <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="submitButtonTouchUpAction:" destination="-1" eventType="touchUpInside" id="b3x-2O-z0x"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -130,8 +139,8 @@
                             <exclude reference="2h2-Z1-yR2"/>
                             <exclude reference="rGd-bp-wca"/>
                             <exclude reference="TuB-cC-wqx"/>
-                            <exclude reference="sBD-eL-n2q"/>
                             <include reference="qy9-GZ-3dp"/>
+                            <exclude reference="sBD-eL-n2q"/>
                         </mask>
                     </variation>
                     <variation key="heightClass=compact-widthClass=regular">
@@ -145,9 +154,9 @@
                             <exclude reference="rGd-bp-wca"/>
                             <exclude reference="TuB-cC-wqx"/>
                             <include reference="ZWj-Zm-dUR"/>
+                            <exclude reference="6L8-A6-TW7"/>
                             <include reference="j9f-gV-z1c"/>
                             <exclude reference="sBD-eL-n2q"/>
-                            <exclude reference="6L8-A6-TW7"/>
                         </mask>
                     </variation>
                 </stackView>
