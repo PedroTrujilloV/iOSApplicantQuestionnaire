@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="fgA-qd-Iuj" userLabel="root stack view">
+                <stackView contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="fgA-qd-Iuj" userLabel="root stack view">
                     <rect key="frame" x="31" y="210" width="352" height="486"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="NAc-dP-F1s" userLabel="no button stack view">
@@ -47,6 +47,7 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <variation key="heightClass=compact-widthClass=compact" distribution="equalSpacing" spacing="10"/>
                                     <variation key="heightClass=compact-widthClass=regular" distribution="fillEqually" spacing="20"/>
                                 </stackView>
@@ -68,6 +69,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
+                                            <variation key="heightClass=compact-widthClass=regular" alignment="center"/>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="cxY-GI-Azr">
                                             <rect key="frame" x="0.0" y="58.5" width="352" height="39"/>
@@ -84,11 +86,15 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
+                                            <variation key="heightClass=compact-widthClass=regular" alignment="center"/>
                                         </stackView>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <variation key="heightClass=compact-widthClass=compact" spacing="10"/>
+                                    <variation key="heightClass=compact-widthClass=regular" alignment="center"/>
                                 </stackView>
                             </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <variation key="heightClass=compact-widthClass=compact" axis="horizontal" distribution="fillEqually"/>
                             <variation key="heightClass=compact-widthClass=regular" axis="horizontal" distribution="fillEqually"/>
                         </stackView>
