@@ -21,6 +21,8 @@
 		37AE009A249D1BA40046D03E /* FieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37AE0098249D1BA40046D03E /* FieldTableViewCell.xib */; };
 		37AE009D249D1DF50046D03E /* LabelAndFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AE009B249D1DF50046D03E /* LabelAndFieldTableViewCell.swift */; };
 		37AE009E249D1DF50046D03E /* LabelAndFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37AE009C249D1DF50046D03E /* LabelAndFieldTableViewCell.xib */; };
+		37AE00A0249D24740046D03E /* FormDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AE009F249D24740046D03E /* FormDataModel.swift */; };
+		37AE00A2249D269C0046D03E /* SkillModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AE00A1249D269C0046D03E /* SkillModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		37AE0098249D1BA40046D03E /* FieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FieldTableViewCell.xib; sourceTree = "<group>"; };
 		37AE009B249D1DF50046D03E /* LabelAndFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAndFieldTableViewCell.swift; sourceTree = "<group>"; };
 		37AE009C249D1DF50046D03E /* LabelAndFieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelAndFieldTableViewCell.xib; sourceTree = "<group>"; };
+		37AE009F249D24740046D03E /* FormDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDataModel.swift; sourceTree = "<group>"; };
+		37AE00A1249D269C0046D03E /* SkillModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +194,8 @@
 		3773D2AC249B02CF00B63978 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				37AE009F249D24740046D03E /* FormDataModel.swift */,
+				37AE00A1249D269C0046D03E /* SkillModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -341,9 +347,11 @@
 				3773D27D249ABDDB00B63978 /* iOS_Applicant_Form.xcdatamodeld in Sources */,
 				3773D273249ABDDB00B63978 /* AppDelegate.swift in Sources */,
 				37AE009D249D1DF50046D03E /* LabelAndFieldTableViewCell.swift in Sources */,
+				37AE00A2249D269C0046D03E /* SkillModel.swift in Sources */,
 				37AE0099249D1BA40046D03E /* FieldTableViewCell.swift in Sources */,
 				3773D2A7249B027A00B63978 /* FormViewController.swift in Sources */,
 				3773D275249ABDDB00B63978 /* SceneDelegate.swift in Sources */,
+				37AE00A0249D24740046D03E /* FormDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

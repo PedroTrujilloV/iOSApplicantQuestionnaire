@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+struct FormDataModel:Codable {
+    let fullName:String
+    let projectRepo:String
+    let projectURL:String
+    let skillSet: Dictionary<String,SkillModel>
+}

@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+struct SkillModel:Codable {
+    let name: String
+    let value: Int
+}
