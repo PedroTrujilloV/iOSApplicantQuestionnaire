@@ -17,6 +17,10 @@
 		3773D298249ABDE300B63978 /* iOS_Applicant_FormUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3773D297249ABDE300B63978 /* iOS_Applicant_FormUITests.swift */; };
 		3773D2A7249B027A00B63978 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3773D2A5249B027900B63978 /* FormViewController.swift */; };
 		3773D2A8249B027A00B63978 /* FormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3773D2A6249B027A00B63978 /* FormViewController.xib */; };
+		37AE0099249D1BA40046D03E /* FieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AE0097249D1BA40046D03E /* FieldTableViewCell.swift */; };
+		37AE009A249D1BA40046D03E /* FieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37AE0098249D1BA40046D03E /* FieldTableViewCell.xib */; };
+		37AE009D249D1DF50046D03E /* LabelAndFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AE009B249D1DF50046D03E /* LabelAndFieldTableViewCell.swift */; };
+		37AE009E249D1DF50046D03E /* LabelAndFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37AE009C249D1DF50046D03E /* LabelAndFieldTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +58,10 @@
 		3773D299249ABDE300B63978 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3773D2A5249B027900B63978 /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		3773D2A6249B027A00B63978 /* FormViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormViewController.xib; sourceTree = "<group>"; };
+		37AE0097249D1BA40046D03E /* FieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldTableViewCell.swift; sourceTree = "<group>"; };
+		37AE0098249D1BA40046D03E /* FieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FieldTableViewCell.xib; sourceTree = "<group>"; };
+		37AE009B249D1DF50046D03E /* LabelAndFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAndFieldTableViewCell.swift; sourceTree = "<group>"; };
+		37AE009C249D1DF50046D03E /* LabelAndFieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelAndFieldTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +166,8 @@
 			isa = PBXGroup;
 			children = (
 				3773D2AD249B02EE00B63978 /* XIB */,
+				37AE0097249D1BA40046D03E /* FieldTableViewCell.swift */,
+				37AE009B249D1DF50046D03E /* LabelAndFieldTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -188,6 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				3773D2A6249B027A00B63978 /* FormViewController.xib */,
+				37AE0098249D1BA40046D03E /* FieldTableViewCell.xib */,
+				37AE009C249D1DF50046D03E /* LabelAndFieldTableViewCell.xib */,
 			);
 			path = XIB;
 			sourceTree = "<group>";
@@ -297,7 +309,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3773D282249ABDE200B63978 /* LaunchScreen.storyboard in Resources */,
+				37AE009A249D1BA40046D03E /* FieldTableViewCell.xib in Resources */,
 				3773D27F249ABDE200B63978 /* Assets.xcassets in Resources */,
+				37AE009E249D1DF50046D03E /* LabelAndFieldTableViewCell.xib in Resources */,
 				3773D2A8249B027A00B63978 /* FormViewController.xib in Resources */,
 				3773D27A249ABDDB00B63978 /* Main.storyboard in Resources */,
 			);
@@ -326,6 +340,8 @@
 			files = (
 				3773D27D249ABDDB00B63978 /* iOS_Applicant_Form.xcdatamodeld in Sources */,
 				3773D273249ABDDB00B63978 /* AppDelegate.swift in Sources */,
+				37AE009D249D1DF50046D03E /* LabelAndFieldTableViewCell.swift in Sources */,
+				37AE0099249D1BA40046D03E /* FieldTableViewCell.swift in Sources */,
 				3773D2A7249B027A00B63978 /* FormViewController.swift in Sources */,
 				3773D275249ABDDB00B63978 /* SceneDelegate.swift in Sources */,
 			);

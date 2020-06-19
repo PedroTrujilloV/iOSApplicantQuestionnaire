@@ -27,7 +27,6 @@ class FormViewController: UIViewController {
     }
     
     private func setupFont(){
-//        fullNameTextField.font = UIFont(name: "MuseoSans_500", size: 12)
     }
 
     @IBAction func submitButtonTouchUpAction(_ sender: Any) {
