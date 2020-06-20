@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>Full Name</string>
+		<key>type</key>
+		<string>FieldTableViewCell</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Email</string>
+		<key>type</key>
+		<string>FieldTableViewCell</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Project Repo</string>
+		<key>type</key>
+		<string>FieldTableViewCell</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Project URL</string>
+		<key>type</key>
+		<string>FieldTableViewCell</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>OOP</string>
+		<key>type</key>
+		<string>LabelAndFieldTableViewCell</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>UIKit</string>
+		<key>type</key>
+		<string>LabelAndFieldTableViewCell</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Modular development</string>
+		<key>type</key>
+		<string>LabelAndFieldTableViewCell</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Memory Management (ARC)</string>
+		<key>type</key>
+		<string>LabelAndFieldTableViewCell</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Testing</string>
+		<key>type</key>
+		<string>LabelAndFieldTableViewCell</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Core Data</string>
+		<key>type</key>
+		<string>LabelAndFieldTableViewCell</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Debugging</string>
+		<key>type</key>
+		<string>LabelAndFieldTableViewCell</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Problem solving skills</string>
+		<key>type</key>
+		<string>LabelAndFieldTableViewCell</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>SwiftUI </string>
+		<key>type</key>
+		<string>LabelAndFieldTableViewCell</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Combine</string>
+		<key>type</key>
+		<string>LabelAndFieldTableViewCell</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Working in a team</string>
+		<key>type</key>
+		<string>LabelAndFieldTableViewCell</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Self motivation</string>
+		<key>type</key>
+		<string>LabelAndFieldTableViewCell</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Communication skills</string>
+		<key>type</key>
+		<string>LabelAndFieldTableViewCell</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Your own energy level</string>
+		<key>type</key>
+		<string>LabelAndFieldTableViewCell</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Intelligence / Aptitude</string>
+		<key>type</key>
+		<string>LabelAndFieldTableViewCell</string>
+	</dict>
+</array>
+</plist>

@@ -1,5 +1,5 @@
 //
-//  FieldTableViewCell.swift
+//  ButtonTableViewCell.swift
 //  iOS Applicant Form
 //
 //  Created by Pedro Trujillo on 6/19/20.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class FieldTableViewCell: UITableViewCell {
-    @IBOutlet weak var textField: UITextField!
+class ButtonTableViewCell: UITableViewCell {
+    @IBOutlet weak var button: UIButton!
     
-    static let reuseIdentifer = "FieldTableViewCell"
-    
+    static let reuseIdentifer = "ButtonTableViewCell"
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,14 +20,8 @@ class FieldTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        setup()
-    }
-    private func setup(){
-        configureStyle()
-    }
-    private func configureStyle(){
-        
-//        textField.font = UIFont(name: "MuseoSans_500", size: 12)
+
+        // Configure the view for the selected state
     }
     
 }

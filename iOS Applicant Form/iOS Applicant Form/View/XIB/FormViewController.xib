@@ -9,6 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FormViewController" customModule="iOS_Applicant_Form" customModuleProvider="target">
             <connections>
+                <outlet property="submitButton" destination="Zdo-5Y-A4H" id="NZ3-6G-C6o"/>
+                <outlet property="tableView" destination="BLO-45-RAY" id="O9X-g6-CIS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,6 +31,10 @@
                                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BLO-45-RAY">
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="608.5"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <connections>
+                                                <outlet property="dataSource" destination="-1" id="Y8a-Rq-HLK"/>
+                                                <outlet property="delegate" destination="-1" id="9ZJ-ak-Afe"/>
+                                            </connections>
                                         </tableView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -12,6 +12,8 @@ class LabelAndFieldTableViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var textField: UITextField!
     
+    static let reuseIdentifer = "LabelAndFieldTableViewCell"
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,6 +27,8 @@ class LabelAndFieldTableViewCell: UITableViewCell {
         configureStyle()
     }
     private func configureStyle(){
-//        textField.font = UIFont(name: "MuseoSans_500", size: 12)
+        textField.keyboardType = UIKeyboardType.numberPad
+        textField.font = UIFont(name: "MuseoSans_500", size: 12)
+        title.font = UIFont(name: "MuseoSans_500", size: 12)
     }
 }

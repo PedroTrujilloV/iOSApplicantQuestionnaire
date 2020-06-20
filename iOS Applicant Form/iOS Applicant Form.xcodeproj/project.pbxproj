@@ -23,6 +23,13 @@
 		37AE009E249D1DF50046D03E /* LabelAndFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37AE009C249D1DF50046D03E /* LabelAndFieldTableViewCell.xib */; };
 		37AE00A0249D24740046D03E /* FormDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AE009F249D24740046D03E /* FormDataModel.swift */; };
 		37AE00A2249D269C0046D03E /* SkillModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AE00A1249D269C0046D03E /* SkillModel.swift */; };
+		37AE00A7249D38550046D03E /* FormCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AE00A6249D38550046D03E /* FormCellType.swift */; };
+		37AE00A9249D46110046D03E /* form.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37AE00A8249D46110046D03E /* form.plist */; };
+		37AE00AC249D47400046D03E /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AE00AA249D47400046D03E /* ButtonTableViewCell.swift */; };
+		37AE00AD249D47400046D03E /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37AE00AB249D47400046D03E /* ButtonTableViewCell.xib */; };
+		37AE00AF249D6E940046D03E /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AE00AE249D6E940046D03E /* Section.swift */; };
+		37AE00B5249D798B0046D03E /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AE00B4249D798B0046D03E /* CellViewModel.swift */; };
+		37AE00B9249DB9B10046D03E /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AE00B8249DB9B10046D03E /* CellModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +73,13 @@
 		37AE009C249D1DF50046D03E /* LabelAndFieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelAndFieldTableViewCell.xib; sourceTree = "<group>"; };
 		37AE009F249D24740046D03E /* FormDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDataModel.swift; sourceTree = "<group>"; };
 		37AE00A1249D269C0046D03E /* SkillModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillModel.swift; sourceTree = "<group>"; };
+		37AE00A6249D38550046D03E /* FormCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCellType.swift; sourceTree = "<group>"; };
+		37AE00A8249D46110046D03E /* form.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = form.plist; sourceTree = "<group>"; };
+		37AE00AA249D47400046D03E /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
+		37AE00AB249D47400046D03E /* ButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonTableViewCell.xib; sourceTree = "<group>"; };
+		37AE00AE249D6E940046D03E /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		37AE00B4249D798B0046D03E /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
+		37AE00B8249DB9B10046D03E /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +114,7 @@
 				3773D278249ABDDB00B63978 /* Main.storyboard */,
 				3773D27E249ABDE200B63978 /* Assets.xcassets */,
 				3773D280249ABDE200B63978 /* LaunchScreen.storyboard */,
+				37AE00A8249D46110046D03E /* form.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -135,6 +150,7 @@
 		3773D271249ABDDB00B63978 /* iOS Applicant Form */ = {
 			isa = PBXGroup;
 			children = (
+				37AE00A3249D37F30046D03E /* enum */,
 				3773D2AB249B02B900B63978 /* Controller */,
 				3773D2AA249B02B300B63978 /* ViewModel */,
 				3773D2A9249B02AB00B63978 /* View */,
@@ -172,6 +188,7 @@
 				3773D2AD249B02EE00B63978 /* XIB */,
 				37AE0097249D1BA40046D03E /* FieldTableViewCell.swift */,
 				37AE009B249D1DF50046D03E /* LabelAndFieldTableViewCell.swift */,
+				37AE00AA249D47400046D03E /* ButtonTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -179,6 +196,7 @@
 		3773D2AA249B02B300B63978 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				37AE00B4249D798B0046D03E /* CellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -196,6 +214,7 @@
 			children = (
 				37AE009F249D24740046D03E /* FormDataModel.swift */,
 				37AE00A1249D269C0046D03E /* SkillModel.swift */,
+				37AE00B8249DB9B10046D03E /* CellModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -206,8 +225,18 @@
 				3773D2A6249B027A00B63978 /* FormViewController.xib */,
 				37AE0098249D1BA40046D03E /* FieldTableViewCell.xib */,
 				37AE009C249D1DF50046D03E /* LabelAndFieldTableViewCell.xib */,
+				37AE00AB249D47400046D03E /* ButtonTableViewCell.xib */,
 			);
 			path = XIB;
+			sourceTree = "<group>";
+		};
+		37AE00A3249D37F30046D03E /* enum */ = {
+			isa = PBXGroup;
+			children = (
+				37AE00A6249D38550046D03E /* FormCellType.swift */,
+				37AE00AE249D6E940046D03E /* Section.swift */,
+			);
+			path = enum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,11 +344,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3773D282249ABDE200B63978 /* LaunchScreen.storyboard in Resources */,
+				37AE00A9249D46110046D03E /* form.plist in Resources */,
 				37AE009A249D1BA40046D03E /* FieldTableViewCell.xib in Resources */,
 				3773D27F249ABDE200B63978 /* Assets.xcassets in Resources */,
 				37AE009E249D1DF50046D03E /* LabelAndFieldTableViewCell.xib in Resources */,
 				3773D2A8249B027A00B63978 /* FormViewController.xib in Resources */,
 				3773D27A249ABDDB00B63978 /* Main.storyboard in Resources */,
+				37AE00AD249D47400046D03E /* ButtonTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,9 +379,14 @@
 				3773D273249ABDDB00B63978 /* AppDelegate.swift in Sources */,
 				37AE009D249D1DF50046D03E /* LabelAndFieldTableViewCell.swift in Sources */,
 				37AE00A2249D269C0046D03E /* SkillModel.swift in Sources */,
+				37AE00AF249D6E940046D03E /* Section.swift in Sources */,
 				37AE0099249D1BA40046D03E /* FieldTableViewCell.swift in Sources */,
 				3773D2A7249B027A00B63978 /* FormViewController.swift in Sources */,
+				37AE00A7249D38550046D03E /* FormCellType.swift in Sources */,
+				37AE00AC249D47400046D03E /* ButtonTableViewCell.swift in Sources */,
 				3773D275249ABDDB00B63978 /* SceneDelegate.swift in Sources */,
+				37AE00B9249DB9B10046D03E /* CellModel.swift in Sources */,
+				37AE00B5249D798B0046D03E /* CellViewModel.swift in Sources */,
 				37AE00A0249D24740046D03E /* FormDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,5 @@
 //
-//  SkillModel.swift
+//  Section.swift
 //  iOS Applicant Form
 //
 //  Created by Pedro Trujillo on 6/19/20.
@@ -8,7 +8,6 @@
 
 import Foundation
 
-struct SkillModel:Codable,Hashable {
-    let name: String
-    let value: Int
+enum Section {
+    case Form
 }
