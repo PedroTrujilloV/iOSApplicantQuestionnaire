@@ -11,13 +11,21 @@ import UIKit
 class FormViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var submitButton: UIButton!
-    var dataSource: UITableViewDiffableDataSource<Section, CellViewModel>!
     var formViewModel = FormViewModel()
+    var dataSource: UITableViewDiffableDataSource<Section, CellViewModel>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        
+        printFontFamilies()
+    }
+    
+    func printFontFamilies(){
+        for familyString in UIFont.familyNames {
+            for fontName in UIFont.fontNames(forFamilyName: familyString) {
+                print("\n> fontName: \(fontName)")
+            }
+        }
     }
     private func setup() {
         registerNibs()
@@ -54,7 +62,9 @@ extension FormViewController  {
                     let decoder = PropertyListDecoder()
                     cellVM = try decoder.decode([CellModel].self, from: data)
                         .map({ (cellM) -> CellViewModel in
-                            return CellViewModel(cellModel: cellM)
+                            var aCellVM = CellViewModel(cellModel: cellM)
+//                            aCellVM.value = formViewModel.formFieldInfoFrom(title: aCellVM.title)
+                            return aCellVM
                         })
                 }
                 //print("cellVM: \(cellVM)")
@@ -74,6 +84,8 @@ extension FormViewController  {
 }
 
 extension FormViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+//        self
+    }
 }
 

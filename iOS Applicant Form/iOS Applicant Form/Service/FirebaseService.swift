@@ -10,15 +10,14 @@ import Foundation
 import FirebaseDatabase
 
 class FirebaseService {
-     
-    var keys = [String]()
-    
-    func load(with completion: @escaping (Dictionary<String,Any>) ->Void) {
+         
+    func load(with completion: @escaping (Dictionary<String,Any>,Array<String>) ->Void) {
          let dbRef = Database.database().reference()
         dbRef.child("form").observeSingleEvent(of: DataEventType.value) { (snapshot) in
            if let dict = snapshot.value as? Dictionary<String,Any> {
 //                 print("\n\n\n>>>>loadFromFirebase resutl: \(dict)")
-                completion(dict)
+                let keys = Array(dict.keys)
+                completion(dict,keys)
              } else {
                print("\n\n\n>>>>loadFromFirebase: problem loading data from firebase")
            }

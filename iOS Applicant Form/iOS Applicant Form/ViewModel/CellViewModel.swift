@@ -14,6 +14,7 @@ struct CellViewModel:Codable, Hashable {
     let identifier = UUID()
         
     private var model:CellModel
+    var value:String?
 
     init(cellModel:CellModel) {
         model = cellModel
@@ -55,12 +56,14 @@ struct CellViewModel:Codable, Hashable {
                 case .FieldCellType:
                     if let aCell = tableView.dequeueReusableCell(withIdentifier: FieldTableViewCell.reuseIdentifer, for: indexPath) as? FieldTableViewCell {
                         aCell.textField.placeholder = self.titleForCellType
+                        aCell.textField.text = self.value == nil ? self.value : ""
                         return aCell
                     }
                     break;
                 case .LabelAndFieldCellType:
                     if let aCell = tableView.dequeueReusableCell(withIdentifier: LabelAndFieldTableViewCell.reuseIdentifer, for: indexPath) as? LabelAndFieldTableViewCell {
                         aCell.title.text = self.title
+                        aCell.textField.text = self.value == nil ? self.value : ""
                         return aCell
                     }
                     break;

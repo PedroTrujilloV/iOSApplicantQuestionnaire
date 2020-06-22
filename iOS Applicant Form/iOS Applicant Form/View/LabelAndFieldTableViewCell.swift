@@ -28,7 +28,7 @@ class LabelAndFieldTableViewCell: UITableViewCell {
     }
     private func configureStyle(){
         textField.keyboardType = UIKeyboardType.numberPad
-        textField.font = UIFont(name: "MuseoSans_500", size: 12)
-        title.font = UIFont(name: "MuseoSans_500", size: 12)
+        textField.font = UIFont(name: "MuseoSans-500", size: 15)
+        title.font = UIFont(name: "MuseoSans-500", size: 15)
     }
 }

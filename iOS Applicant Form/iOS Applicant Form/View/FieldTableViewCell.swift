@@ -26,8 +26,8 @@ class FieldTableViewCell: UITableViewCell {
         configureStyle()
     }
     private func configureStyle(){
+        textField.font = UIFont(name: "MuseoSans-500", size: 15)
         
-//        textField.font = UIFont(name: "MuseoSans_500", size: 12)
     }
     
 }
