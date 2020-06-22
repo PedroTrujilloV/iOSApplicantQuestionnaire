@@ -12,6 +12,7 @@ class FormViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var submitButton: UIButton!
     var dataSource: UITableViewDiffableDataSource<Section, CellViewModel>!
+    var formViewModel = FormViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,7 @@ class FormViewController: UIViewController {
         registerNibs()
         setupDataSource()
         loadPlistToSnapshot()
+        formViewModel.load()
     }
     
     private func registerNibs() {
@@ -38,6 +40,12 @@ class FormViewController: UIViewController {
 
 extension FormViewController  {
     
+    private func setupDataSource() {
+        self.dataSource = UITableViewDiffableDataSource<Section, CellViewModel>(tableView: self.tableView, cellProvider: { (tableView, indexPath, cellVM) -> UITableViewCell? in
+            return cellVM.cellFor(tableView: tableView, at: indexPath)
+        })
+    }
+    
     private func loadPlistToSnapshot() {
         if let url = Bundle.main.url(forResource: "form", withExtension: "plist") {
             do {
@@ -49,20 +57,13 @@ extension FormViewController  {
                             return CellViewModel(cellModel: cellM)
                         })
                 }
-//                print("cellVM: \(cellVM)")
+                //print("cellVM: \(cellVM)")
                 snapshotForCurrentState(cells: cellVM)
             } catch {
                 print("FormViewController.loadPlist(): problem \(error)")
             }
         }
     }
-        
-    private func setupDataSource() {
-        self.dataSource = UITableViewDiffableDataSource<Section, CellViewModel>(tableView: self.tableView, cellProvider: { (tableView, indexPath, cellVM) -> UITableViewCell? in
-            return cellVM.cellFor(tableView: tableView, at: indexPath)
-        })
-    }
-    
     
     private func snapshotForCurrentState(cells:[CellViewModel]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, CellViewModel>()

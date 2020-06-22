@@ -1,0 +1,6 @@
+framework module Pods_iOS_Applicant_Form_iOS_Applicant_FormUITests {
+  umbrella header "Pods-iOS Applicant Form-iOS Applicant FormUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -112,7 +112,7 @@
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>Intelligence / Aptitude</string>
+		<string>Intelligence-Aptitude</string>
 		<key>type</key>
 		<string>LabelAndFieldTableViewCell</string>
 	</dict>

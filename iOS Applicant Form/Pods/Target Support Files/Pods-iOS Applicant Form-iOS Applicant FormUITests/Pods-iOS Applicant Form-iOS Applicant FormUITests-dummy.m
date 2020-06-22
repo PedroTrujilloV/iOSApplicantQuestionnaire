@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_iOS_Applicant_Form_iOS_Applicant_FormUITests : NSObject
+@end
+@implementation PodsDummy_Pods_iOS_Applicant_Form_iOS_Applicant_FormUITests
+@end

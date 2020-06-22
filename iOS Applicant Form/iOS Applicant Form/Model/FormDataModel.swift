@@ -11,12 +11,13 @@ import Foundation
 struct FormDataModel:Codable, Hashable {
     
     let identifier = UUID()
+    let id:Int
     let fullName:String
+    let email:String
     let projectRepo:String
     let projectURL:String
-    let skillSet: Dictionary<String,SkillModel>
     
-    static func == (lhs: FormDataModel, rhs: FormDataModel) -> Bool {
+    public static func == (lhs: FormDataModel, rhs: FormDataModel) -> Bool {
         return lhs.identifier == rhs.identifier
     }
 }
