@@ -2,7 +2,7 @@
 //  Form+CoreDataClass.swift
 //  iOS Applicant Form
 //
-//  Created by Pedro Trujillo on 6/21/20.
+//  Created by Pedro Trujillo on 6/25/20.
 //  Copyright © 2020 Pedro Trujillo V. All rights reserved.
 //
 //

@@ -8,21 +8,23 @@
 
 import Foundation
 import CoreData
+import Combine
+import SwiftUI
 
-class CoreDataService {
+
+class CoreDataService: ObservableObject {
     private var context:NSManagedObjectContext { return self.persistentContainer.viewContext }
-    var delegate:CoreDataServiceDelegate?
+    var didChange = PassthroughSubject<CoreDataService,Never>()
     
-    init(with delegate:CoreDataServiceDelegate) {
-        self.delegate = delegate
-        self.context.automaticallyMergesChangesFromParent = true
-        _ = self.load()
+    @Published var form:Form?{
+        didSet{
+            didChange.send(self)
+        }
     }
+    
     init() {
         self.context.automaticallyMergesChangesFromParent = true
-        _ = self.load()
     }
-
         
     func updateFrom(from dictionary:Dictionary<String,Any>){
         if let email = dictionary["email"] as? String {
@@ -38,6 +40,7 @@ class CoreDataService {
     }
     
     private func setForm(from dictionary:Dictionary<String,Any>, form:inout Form) {
+        form.id = dictionary["id"] as? UUID
         form.email = dictionary["email"] as? String ?? ""
         form.fullName = dictionary["fullName"] as? String ?? ""
         form.projectRepo = dictionary["projectRepo"] as? String ?? ""
@@ -65,21 +68,28 @@ class CoreDataService {
              _ = try? self.context.execute(insertRequest)
             self.saveContext()
          }
-        _ = load()
-         
+        load()
      }
      
-    func load(){
-         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Form")
-//            request.predicate = NSPredicate(format: "email = %@", email)
-         do {
-            if let form = try self.context.fetch(request).first as? Form {
-                delegate?.formDidLoad(form: form)
+    func load() {
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Form")
+            if let forms = try? self.context.fetch(request) as? [Form], !forms.isEmpty  {
+                print("\n\n\n forms.count:\(forms.count) ")
+                self.form = forms.first!
+                print("\n\n\n form.id:\(String(describing: self.form?.id)) ")
+                print("form.fullName:\(String(describing: self.form?.fullName)) ")
+                print("form.yourownenergylevel:\(String(describing: self.form?.yourownenergylevel)) \n\n")                
+            } else {
+                self.makeNewBlankForm()
+                self.load()
             }
-         } catch {
-             fatalError("coreDataLoad Failed to fetch Form: \(error)")
-         }
      }
+    
+    private func makeNewBlankForm() {
+        let form = Form(context: self.context)
+        form.id = UUID()
+        self.saveContext()
+    }
 
        private lazy var persistentContainer: NSPersistentContainer = {
          let container = NSPersistentContainer(name: "iOS_Applicant_Form")
