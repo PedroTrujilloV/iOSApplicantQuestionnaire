@@ -7,6 +7,7 @@
         <attribute name="debugging" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="fullName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="intelligence_aptitude" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="memory_management_arc" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="modular_development" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -22,6 +23,6 @@
         <attribute name="yourownenergylevel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Form" positionX="220.6640625" positionY="-152.6015625" width="128" height="328"/>
+        <element name="Form" positionX="220.6640625" positionY="-152.6015625" width="128" height="343"/>
     </elements>
 </model>

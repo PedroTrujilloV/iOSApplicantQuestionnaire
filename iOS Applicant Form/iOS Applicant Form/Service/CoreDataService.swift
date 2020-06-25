@@ -88,6 +88,8 @@ class CoreDataService: ObservableObject {
     private func makeNewBlankForm() {
         let form = Form(context: self.context)
         form.id = UUID()
+        form.fullName = "Snipi"
+        form.combine = 100
         self.saveContext()
     }
 

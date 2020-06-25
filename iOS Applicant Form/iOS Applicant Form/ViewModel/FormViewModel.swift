@@ -7,148 +7,196 @@
 //
 
 import Foundation
+import Combine
+import SwiftUI
 
-class FormViewModel:CoreDataServiceDelegate  {
+
+class FormViewModel:ObservableObject  {
     
-    private let coreDataService = CoreDataService()
-    private let firebaseService = FirebaseService()
-    private var model:Form
+    @Published private var coreDataService = CoreDataService()
+    private var cancelable:AnyCancellable?
+    private var firebaseService = FirebaseService()
+    @Published private var model:Form? {
+        didSet {
+            self.update()
+            self.setHashTable()
+        }
+    }
     private var keys:Array<String> = []
+    private var hashTable: Dictionary<String,Published<String?>.Publisher>?
+    
+    @Published var email:String?
+    @Published var fullName: String?
+    @Published var projectURL: String?
+    @Published var projectRepo: String?
+    @Published var combine: String?
+    @Published var communication_skills: String?
+    @Published var core_data: String?
+    @Published var debugging: String?
+    @Published var intelligence_aptitude: String?
+    @Published var memory_management_arc: String?
+    @Published var modular_development: String?
+    @Published var oop: String?
+    @Published var problem_solving_skills: String?
+    @Published var self_motivation: String?
+    @Published var swiftui: String?
+    @Published var testing: String?
+    @Published var uikit: String?
+    @Published var workinginateam: String?
+    @Published var yourownenergylevel: String?
     
     init() {
-        model = Form()
-        coreDataService.delegate = self
         
-        load()
+        self.coreDataService.load()
+        model = coreDataService.form
+        self.configureOutputs()
     }
     
     func submit() {
         coreDataService.saveContext()
     }
     
+    func setHashTable(){
+        self.hashTable =  ["Full Name" : $fullName,
+                           "Email" : $email,
+          "Project Repo": $projectRepo,
+          "Project URL" : $projectURL,
+          "Combine" : $combine,
+          "Communication skills" : $communication_skills,
+          "Core Data" : $core_data,
+          "Debugging" : $debugging,
+          "Intelligence-Aptitude" : $intelligence_aptitude,
+          "Memory Management (ARC)" : $memory_management_arc,
+          "Modular development" : $modular_development,
+          "OOP" : $oop,
+          "Problem solving skills" : $problem_solving_skills,
+          "Self motivation" : $self_motivation,
+          "SwiftUI " : $swiftui,
+          "Testing" : $testing,
+          "UIKit" : $uikit,
+          "Working in a team" : $workinginateam,
+            "Your own energy level" : $yourownenergylevel] as Dictionary<String,Published<String?>.Publisher>
+    }
+    
     
     func update() {
-        self.model.self_motivation = Int16(Int.random(in: 40 ..< 50)) //delete
-        self.model.communication_skills = Int16(Int.random(in: 40 ..< 50)) //delete
-        self.firebaseService.update(with: self.model)
-    }
-    
-    func load(){
-        self.firebaseService.load { (dictionary,keys) in
-            self.keys = keys
-            self.coreDataService.updateFrom(from: dictionary)
-            self.coreDataService.load()
+        if (self.model != nil) {
+            self.firebaseService.update(with: self.model!)
+        } else {
+            print("FormViewModel.update: problem updating at Firebase model = nil")
         }
     }
+
     
-    func formFieldInfoFrom(title:String) ->String {
+//    func load(){
+//        self.firebaseService.load { (dictionary,keys) in
+//            self.keys = keys
+//            self.coreDataService.updateFrom(from: dictionary)
+//            self.coreDataService.load()
+//        }
+//    }
+    
+    func formFieldInfoFrom(title:String) ->Published<String?>.Publisher?  {
+        return hashTable?[title] 
+    }
         
-        let hashTable = ["Full Name" : fullName,
-        "Email" : email,
-          "Project Repo": projectRepo,
-          "Project URL" : projectURL,
-          "Combine" : combine,
-          "Communication skills" : communication_skills,
-          "Core Data" : core_data,
-          "Debugging" : debugging,
-          "Intelligence-Aptitude" : intelligence_aptitude,
-          "Memory Management (ARC)" : memory_management_arc,
-          "Modular development" : modular_development,
-          "OOP" : oop,
-          "Problem solving skills" : problem_solving_skills,
-          "Self motivation" : self_motivation,
-          "SwiftUI " : swiftui,
-          "Testing" : testing,
-          "UIKit" : uikit,
-          "Working in a team" : workinginateam,
-          "Your own energy level" : yourownenergylevel]
-            
+    func configureOutputs(){
+        email = getEmail()
+        fullName = getFullName()
+        projectURL = getProjectURL()
+        projectRepo = getProjectRepo()
+        combine = getCombine()
+        communication_skills = getCommunication_skills()
+        core_data = getCore_data()
+        debugging = getDebugging()
+        intelligence_aptitude = getIntelligence_aptitude()
+        memory_management_arc = getMemory_management_arc()
+        modular_development = getModular_development()
+        oop = getOOP()
+        problem_solving_skills = getProblem_solving_skills()
+        self_motivation = getSelf_motivation()
+        swiftui = getSwiftui()
+        workinginateam = getWorkinginateam()
+        yourownenergylevel = getYourownenergylevel()
         
-        return hashTable[title] ?? ""
+        print("\n\n\n\n>>>> FormViewModel.fullName: \(String(describing: self.fullName))")
     }
     
-    var email:String {
-        return self.model.email ?? ""
+    private func getEmail() ->String{
+        return self.model?.email ?? ""
     }
     
-    var fullName: String {
-        return self.model.fullName ?? ""
+    private func getFullName() ->String{
+        return self.model?.fullName ?? ""
     }
     
-    var projectURL: String {
-        return self.model.projectURL ?? ""
+    private func getProjectURL() ->String{
+        return self.model?.projectURL ?? ""
     }
     
-    var projectRepo: String {
-        return self.model.projectRepo ?? ""
+    private func getProjectRepo() ->String{
+        return self.model?.projectRepo ?? ""
     }
     
-    var combine: String {
-        return String(self.model.combine)
+    private func getCombine() ->String{
+        return String(describing: self.model?.combine)
     }
     
-    var communication_skills: String {
-        return String(self.model.communication_skills)
+    private func getCommunication_skills() ->String{
+        return String(describing:self.model?.communication_skills)
     }
     
-    var core_data: String {
-        return String(self.model.core_data)
+    private func getCore_data() ->String{
+        return String(describing:self.model?.core_data)
     }
     
-    var debugging: String {
-        return String(self.model.debugging)
+    private func getDebugging() ->String{
+        return String(describing:self.model?.debugging)
     }
     
-    var intelligence_aptitude: String {
-        return String(self.model.intelligence_aptitude)
+    private func getIntelligence_aptitude() ->String{
+        return String(describing:self.model?.intelligence_aptitude)
     }
     
-    var memory_management_arc: String {
-        return String(self.model.memory_management_arc)
+    private func getMemory_management_arc() ->String{
+        return String(describing:self.model?.memory_management_arc)
     }
     
-    var modular_development: String {
-        return String(self.model.modular_development)
+    private func getModular_development() ->String{
+        return String(describing:self.model?.modular_development)
     }
     
-    var oop: String {
-        return String(self.model.oop)
+    private func getOOP() ->String{
+        return String(describing:self.model?.oop)
     }
     
-    var problem_solving_skills: String {
-        return String(self.model.problem_solving_skills)
+    private func getProblem_solving_skills() ->String{
+        return String(describing:self.model?.problem_solving_skills)
     }
     
-    var self_motivation: String {
-        return String(self.model.self_motivation)
+    private func getSelf_motivation() ->String{
+        return String(describing:self.model?.self_motivation)
     }
     
-    var swiftui: String {
-        return String(self.model.swiftui)
+    private func getSwiftui() ->String{
+        return String(describing:self.model?.swiftui)
     }
     
-    var testing: String {
-        return String(self.model.testing)
+    private func getTesting() ->String{
+        return String(describing:self.model?.testing)
     }
     
-    var uikit: String {
-        return String(self.model.uikit)
+    private func getUIKit() ->String{
+        return String(describing:self.model?.uikit)
     }
     
-    var workinginateam: String {
-        return String(self.model.workinginateam)
+    private func getWorkinginateam() ->String{
+        return String(describing:self.model?.workinginateam)
     }
     
-    var yourownenergylevel: String {
-        return String(self.model.yourownenergylevel)
+    private func getYourownenergylevel() ->String{
+        return String(describing:self.model?.yourownenergylevel)
     }
 
-    // MARK: - Conform to CoreDataServiceDelegate
-
-    func formDidLoad(form: Form) {
-        self.model = form
-        print("\n\n\n>>>model email: \(String(describing: model.email))\n")
-//          update()
-    }
 
 }

@@ -8,13 +8,17 @@
 
 import Foundation
 import UIKit
+import Combine
+import SwiftUI
 
-struct CellViewModel:Codable, Hashable {
+class CellViewModel: ObservableObject  {
     
     let identifier = UUID()
+    
+    private var cancelable:AnyCancellable?
         
     private var model:CellModel
-    var value:String?
+    @Published var value:String?
 
     init(cellModel:CellModel) {
         model = cellModel
@@ -56,14 +60,14 @@ struct CellViewModel:Codable, Hashable {
                 case .FieldCellType:
                     if let aCell = tableView.dequeueReusableCell(withIdentifier: FieldTableViewCell.reuseIdentifer, for: indexPath) as? FieldTableViewCell {
                         aCell.textField.placeholder = self.titleForCellType
-                        aCell.textField.text = self.value == nil ? self.value : ""
+                        aCell.textField.text = self.value //== nil ? self.value : ""
                         return aCell
                     }
                     break;
                 case .LabelAndFieldCellType:
                     if let aCell = tableView.dequeueReusableCell(withIdentifier: LabelAndFieldTableViewCell.reuseIdentifer, for: indexPath) as? LabelAndFieldTableViewCell {
                         aCell.title.text = self.title
-                        aCell.textField.text = self.value == nil ? self.value : ""
+                        aCell.textField.text = self.value //== nil ? self.value : ""
                         return aCell
                     }
                     break;
@@ -80,9 +84,30 @@ struct CellViewModel:Codable, Hashable {
     }
     
     
+    func makeBinding(with formVM:FormViewModel) {
+        cancelable = formVM.formFieldInfoFrom(title: self.title)?
+            .assign(to: \.value, on: self).self
+        print("\n\n\n\n>>> cancelable: \(String(describing: cancelable))")
+        print("\n\n\n\n>>> value: \(String(describing: self.value))")
+
+    }
+    
+    func cancle(){
+        cancelable?.cancel()
+    }
+    
+    
+    
+
+}
+extension CellViewModel: Hashable {
+    
     static func == (lhs: CellViewModel, rhs: CellViewModel) -> Bool {
         lhs.identifier == rhs.identifier
     }
     
-
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(ObjectIdentifier(self).hashValue)
+    }
+    
 }

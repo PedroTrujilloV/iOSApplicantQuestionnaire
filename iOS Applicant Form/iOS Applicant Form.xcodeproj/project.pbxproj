@@ -12,8 +12,6 @@
 		373EB5B224A0F2C900AFA79F /* MuseoSans_500.otf in Resources */ = {isa = PBXBuildFile; fileRef = 371348DA249BF12500625184 /* MuseoSans_500.otf */; };
 		37493CC6249FD51E001B8048 /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37493CC5249FD51E001B8048 /* FormViewModel.swift */; };
 		37493CC824A026C6001B8048 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37493CC724A026C6001B8048 /* CoreDataService.swift */; };
-		37493CCB24A049CB001B8048 /* Form+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37493CC924A049CB001B8048 /* Form+CoreDataClass.swift */; };
-		37493CCC24A049CB001B8048 /* Form+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37493CCA24A049CB001B8048 /* Form+CoreDataProperties.swift */; };
 		37493CCE24A0518E001B8048 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37493CCD24A0518E001B8048 /* FirebaseService.swift */; };
 		37493CD124A07A8D001B8048 /* CoreDataServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37493CD024A07A8D001B8048 /* CoreDataServiceDelegate.swift */; };
 		3773D273249ABDDB00B63978 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3773D272249ABDDB00B63978 /* AppDelegate.swift */; };
@@ -26,6 +24,8 @@
 		3773D298249ABDE300B63978 /* iOS_Applicant_FormUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3773D297249ABDE300B63978 /* iOS_Applicant_FormUITests.swift */; };
 		3773D2A7249B027A00B63978 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3773D2A5249B027900B63978 /* FormViewController.swift */; };
 		3773D2A8249B027A00B63978 /* FormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3773D2A6249B027A00B63978 /* FormViewController.xib */; };
+		3793CA0724A47739007EBBA8 /* Form+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3793CA0524A47739007EBBA8 /* Form+CoreDataClass.swift */; };
+		3793CA0824A47739007EBBA8 /* Form+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3793CA0624A47739007EBBA8 /* Form+CoreDataProperties.swift */; };
 		37A2A64D249EF0E000889463 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37A2A64C249EF0DF00889463 /* GoogleService-Info.plist */; };
 		37AE0099249D1BA40046D03E /* FieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AE0097249D1BA40046D03E /* FieldTableViewCell.swift */; };
 		37AE009A249D1BA40046D03E /* FieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37AE0098249D1BA40046D03E /* FieldTableViewCell.xib */; };
@@ -69,8 +69,6 @@
 		373EB5AD24A0800500AFA79F /* FirebaseServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServiceDelegate.swift; sourceTree = "<group>"; };
 		37493CC5249FD51E001B8048 /* FormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModel.swift; sourceTree = "<group>"; };
 		37493CC724A026C6001B8048 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
-		37493CC924A049CB001B8048 /* Form+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		37493CCA24A049CB001B8048 /* Form+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		37493CCD24A0518E001B8048 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		37493CD024A07A8D001B8048 /* CoreDataServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceDelegate.swift; sourceTree = "<group>"; };
 		3773D26F249ABDDB00B63978 /* iOS Applicant Form.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Applicant Form.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +87,8 @@
 		3773D299249ABDE300B63978 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3773D2A5249B027900B63978 /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		3773D2A6249B027A00B63978 /* FormViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormViewController.xib; sourceTree = "<group>"; };
+		3793CA0524A47739007EBBA8 /* Form+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		3793CA0624A47739007EBBA8 /* Form+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		37A2A64C249EF0DF00889463 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		37AE0097249D1BA40046D03E /* FieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldTableViewCell.swift; sourceTree = "<group>"; };
 		37AE0098249D1BA40046D03E /* FieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FieldTableViewCell.xib; sourceTree = "<group>"; };
@@ -167,8 +167,8 @@
 		37493C9C249FCAD0001B8048 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				37493CC924A049CB001B8048 /* Form+CoreDataClass.swift */,
-				37493CCA24A049CB001B8048 /* Form+CoreDataProperties.swift */,
+				3793CA0524A47739007EBBA8 /* Form+CoreDataClass.swift */,
+				3793CA0624A47739007EBBA8 /* Form+CoreDataProperties.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -581,21 +581,21 @@
 			files = (
 				3773D27D249ABDDB00B63978 /* iOS_Applicant_Form.xcdatamodeld in Sources */,
 				3773D273249ABDDB00B63978 /* AppDelegate.swift in Sources */,
-				37493CCB24A049CB001B8048 /* Form+CoreDataClass.swift in Sources */,
 				37AE009D249D1DF50046D03E /* LabelAndFieldTableViewCell.swift in Sources */,
 				37493CC6249FD51E001B8048 /* FormViewModel.swift in Sources */,
 				37AE00AF249D6E940046D03E /* Section.swift in Sources */,
 				37AE0099249D1BA40046D03E /* FieldTableViewCell.swift in Sources */,
 				37493CD124A07A8D001B8048 /* CoreDataServiceDelegate.swift in Sources */,
-				37493CCC24A049CB001B8048 /* Form+CoreDataProperties.swift in Sources */,
 				3773D2A7249B027A00B63978 /* FormViewController.swift in Sources */,
 				37AE00A7249D38550046D03E /* FormCellType.swift in Sources */,
 				37493CC824A026C6001B8048 /* CoreDataService.swift in Sources */,
 				37AE00AC249D47400046D03E /* ButtonTableViewCell.swift in Sources */,
+				3793CA0724A47739007EBBA8 /* Form+CoreDataClass.swift in Sources */,
 				373EB5AE24A0800500AFA79F /* FirebaseServiceDelegate.swift in Sources */,
 				37493CCE24A0518E001B8048 /* FirebaseService.swift in Sources */,
 				3773D275249ABDDB00B63978 /* SceneDelegate.swift in Sources */,
 				37AE00B9249DB9B10046D03E /* CellModel.swift in Sources */,
+				3793CA0824A47739007EBBA8 /* Form+CoreDataProperties.swift in Sources */,
 				37AE00B5249D798B0046D03E /* CellViewModel.swift in Sources */,
 				37AE00A0249D24740046D03E /* FormDataModel.swift in Sources */,
 			);

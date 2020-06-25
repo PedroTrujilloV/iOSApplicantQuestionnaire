@@ -7,17 +7,20 @@
 //
 
 import UIKit
+import Combine
+import SwiftUI
 
 class FormViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var submitButton: UIButton!
-    var formViewModel = FormViewModel()
+    @ObservedObject var formVM = FormViewModel()
+    private var subscriptions = Set<AnyCancellable>()
     var dataSource: UITableViewDiffableDataSource<Section, CellViewModel>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        printFontFamilies()
+//        printFontFamilies()
     }
     
     func printFontFamilies(){
@@ -31,7 +34,6 @@ class FormViewController: UIViewController {
         registerNibs()
         setupDataSource()
         loadPlistToSnapshot()
-        formViewModel.load()
     }
     
     private func registerNibs() {
@@ -57,18 +59,18 @@ extension FormViewController  {
     private func loadPlistToSnapshot() {
         if let url = Bundle.main.url(forResource: "form", withExtension: "plist") {
             do {
-                var cellVM: [CellViewModel] = []
+                var cellVMs: [CellViewModel] = []
                 if let data =  try? Data(contentsOf: url) {
                     let decoder = PropertyListDecoder()
-                    cellVM = try decoder.decode([CellModel].self, from: data)
+                    cellVMs = try decoder.decode([CellModel].self, from: data)
                         .map({ (cellM) -> CellViewModel in
-                            var aCellVM = CellViewModel(cellModel: cellM)
-//                            aCellVM.value = formViewModel.formFieldInfoFrom(title: aCellVM.title)
+                            let aCellVM = CellViewModel(cellModel: cellM)
+                            aCellVM.makeBinding(with: formVM)
                             return aCellVM
                         })
                 }
                 //print("cellVM: \(cellVM)")
-                snapshotForCurrentState(cells: cellVM)
+                snapshotForCurrentState(cells: cellVMs)
             } catch {
                 print("FormViewController.loadPlist(): problem \(error)")
             }
@@ -87,5 +89,6 @@ extension FormViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
 //        self
     }
+    
 }
 
