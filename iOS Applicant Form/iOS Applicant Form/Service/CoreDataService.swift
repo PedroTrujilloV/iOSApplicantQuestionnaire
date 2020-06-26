@@ -16,7 +16,7 @@ class CoreDataService: ObservableObject {
     private var context:NSManagedObjectContext { return self.persistentContainer.viewContext }
     var didChange = PassthroughSubject<CoreDataService,Never>()
     
-    @Published var form:Form?{
+    @Published var form = Form(){
         didSet{
             didChange.send(self)
         }
@@ -40,7 +40,7 @@ class CoreDataService: ObservableObject {
     }
     
     private func setForm(from dictionary:Dictionary<String,Any>, form:inout Form) {
-        form.id = dictionary["id"] as? UUID
+        form.id = dictionary["id"] as! UUID
         form.email = dictionary["email"] as? String ?? ""
         form.fullName = dictionary["fullName"] as? String ?? ""
         form.projectRepo = dictionary["projectRepo"] as? String ?? ""
@@ -76,9 +76,9 @@ class CoreDataService: ObservableObject {
             if let forms = try? self.context.fetch(request) as? [Form], !forms.isEmpty  {
                 print("\n\n\n forms.count:\(forms.count) ")
                 self.form = forms.first!
-                print("\n\n\n form.id:\(String(describing: self.form?.id)) ")
-                print("form.fullName:\(String(describing: self.form?.fullName)) ")
-                print("form.yourownenergylevel:\(String(describing: self.form?.yourownenergylevel)) \n\n")                
+                print("\n\n\n form.id:\(String(describing: self.form.id)) ")
+                print("form.fullName:\(String(describing: self.form.fullName)) ")
+                print("form.yourownenergylevel:\(String(describing: self.form.yourownenergylevel)) \n\n")
             } else {
                 self.makeNewBlankForm()
                 self.load()
@@ -89,7 +89,6 @@ class CoreDataService: ObservableObject {
         let form = Form(context: self.context)
         form.id = UUID()
         form.fullName = "Snipi"
-        form.combine = 100
         self.saveContext()
     }
 

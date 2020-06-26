@@ -33,26 +33,26 @@ class FirebaseService {
      }
     
     func makeUpdates(with form:Form) ->[String:Any] {
-        print("\n\nFirebaseService.makeUpdates for form with id: \(String(describing: form.id!))")
-        return  ["\(String(describing: form.id!))/fullName" : form.fullName ?? String(describing: form.fullName),
-        "\(String(describing: form.id!))/email" : form.email ?? String(describing: form.email),
-        "\(String(describing: form.id!))/projectRepo": form.projectRepo ?? String(describing: form.projectRepo),
-        "\(String(describing: form.id!))/projectURL" : form.projectURL ?? String(describing: form.projectURL),
-          "\(String(describing: form.id!))/Combine" : form.combine,
-          "\(String(describing: form.id!))/Communication skills" : form.communication_skills,
-          "\(String(describing: form.id!))/Core Data" : form.core_data,
-          "\(String(describing: form.id!))/Debugging" : form.debugging,
-          "\(String(describing: form.id!))/Intelligence-Aptitude" : form.intelligence_aptitude,
-          "\(String(describing: form.id!))/Memory Management (ARC)" : form.memory_management_arc,
-          "\(String(describing: form.id!))/Modular development" : form.modular_development,
-          "\(String(describing: form.id!))/OOP" : form.oop,
-          "\(String(describing: form.id!))/Problem solving skills" : form.problem_solving_skills,
-          "\(String(describing: form.id!))/Self motivation" : form.self_motivation,
-          "\(String(describing: form.id!))/SwiftUI" : form.swiftui,
-          "\(String(describing: form.id!))/Testing" : form.testing,
-          "\(String(describing: form.id!))/UIKit" : form.uikit,
-          "\(String(describing: form.id!))/Working in a team" : form.workinginateam,
-          "\(String(describing: form.id!))/Your own energy level" : form.yourownenergylevel]
+        print("\n\nFirebaseService.makeUpdates for form with id: \(String(describing: form.id))")
+        return  ["\(String(describing: form.id))/fullName" : form.fullName ,
+                 "\(String(describing: form.id))/email" : form.email ,
+                 "\(String(describing: form.id))/projectRepo": form.projectRepo ,
+                 "\(String(describing: form.id))/projectURL" : form.projectURL ,
+          "\(String(describing: form.id))/Combine" : form.combine,
+          "\(String(describing: form.id))/Communication skills" : form.communication_skills,
+          "\(String(describing: form.id))/Core Data" : form.core_data,
+          "\(String(describing: form.id))/Debugging" : form.debugging,
+          "\(String(describing: form.id))/Intelligence-Aptitude" : form.intelligence_aptitude,
+          "\(String(describing: form.id))/Memory Management (ARC)" : form.memory_management_arc,
+          "\(String(describing: form.id))/Modular development" : form.modular_development,
+          "\(String(describing: form.id))/OOP" : form.oop,
+          "\(String(describing: form.id))/Problem solving skills" : form.problem_solving_skills,
+          "\(String(describing: form.id))/Self motivation" : form.self_motivation,
+          "\(String(describing: form.id))/SwiftUI" : form.swiftui,
+          "\(String(describing: form.id))/Testing" : form.testing,
+          "\(String(describing: form.id))/UIKit" : form.uikit,
+          "\(String(describing: form.id))/Working in a team" : form.workinginateam,
+          "\(String(describing: form.id))/Your own energy level" : form.yourownenergylevel]
     }
     
 

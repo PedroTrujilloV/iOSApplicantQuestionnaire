@@ -18,7 +18,7 @@ class CellViewModel: ObservableObject  {
     private var cancelable:AnyCancellable?
         
     private var model:CellModel
-    @Published var value:String?
+    @Published var value:String = ""
 
     init(cellModel:CellModel) {
         model = cellModel
@@ -60,14 +60,14 @@ class CellViewModel: ObservableObject  {
                 case .FieldCellType:
                     if let aCell = tableView.dequeueReusableCell(withIdentifier: FieldTableViewCell.reuseIdentifer, for: indexPath) as? FieldTableViewCell {
                         aCell.textField.placeholder = self.titleForCellType
-                        aCell.textField.text = self.value //== nil ? self.value : ""
+                        aCell.textField.text = self.value
                         return aCell
                     }
                     break;
                 case .LabelAndFieldCellType:
                     if let aCell = tableView.dequeueReusableCell(withIdentifier: LabelAndFieldTableViewCell.reuseIdentifer, for: indexPath) as? LabelAndFieldTableViewCell {
                         aCell.title.text = self.title
-                        aCell.textField.text = self.value //== nil ? self.value : ""
+                        aCell.textField.text = self.value
                         return aCell
                     }
                     break;
