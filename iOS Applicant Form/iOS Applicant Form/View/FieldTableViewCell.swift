@@ -33,8 +33,6 @@ class FieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     func setupBinding (){
         cancelable = cellVM.$value
             .assign(to: \.text!, on: textField)
-        
-//        cellVM.a
     }
     
     
@@ -64,12 +62,13 @@ class FieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     @IBAction func editingChanged(_ sender: UITextField) {
 //        cellVM.textDidChange(sender: self.didChange.eraseToAnyPublisher())
-//        self.didChange.send(sender.text!)
         print("FieldTableViewCell IBAction editingChanged sender.text: \(String(describing: sender.text))")
     }
     @IBAction func editingDidEnd(_ sender: UITextField) {
         cellVM.textDidChange(sender: self.didChange.eraseToAnyPublisher())
         self.didChange.send(sender.text!)
+        print("FieldTableViewCell IBAction editingDidEnd sender.text: \(String(describing: sender.text))")
+
     }
     
 }

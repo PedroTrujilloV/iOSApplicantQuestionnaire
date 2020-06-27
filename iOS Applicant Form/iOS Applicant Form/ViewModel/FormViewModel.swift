@@ -17,11 +17,14 @@ class FormViewModel:ObservableObject  {
     private var cancelable = Set<AnyCancellable>()
     private var firebaseService = FirebaseService()
     private var aCellDidChange:AnyPublisher<CellViewModel,Never> = PassthroughSubject<CellViewModel,Never>().eraseToAnyPublisher()
+//    private var formlDidChange = PassthroughSubject<Form,Never>()
     
     @Published private var model = Form() {
         didSet {
 //            self.update()
 //            self.setHashTable()
+            print("\n\n\n\n>>>>FormViewModel didSet model(Form).fullName: \(String(describing:  self.model.fullName))\n\n")
+
         }
     }
     private var keys:Array<String> = []
@@ -30,16 +33,13 @@ class FormViewModel:ObservableObject  {
 
     @Published var email:String = "" {
         didSet {
-            print("\n\n\n\n>>>> FormViewModel didSet email: \(String(describing: self.email))")
-
+            print("\n\n\n\n>>>>FormViewModel didSet self.fullName: \(String(describing: self.fullName)) model.fullName: \(String(describing:  self.model.fullName))\n\n")
             self.model.email = email
         }
     }
     @Published var fullName: String = "" {
         didSet {
-            print("\n\n\n\n>>>>FormViewModel didSet self.fullName: \(String(describing: self.fullName))")
-            print("\\n>>>>FormViewModel didSet model.fullName: \(String(describing:  self.model.fullName))\n\n")
-
+            print("\n\n\n\n>>>>FormViewModel didSet self.fullName: \(String(describing: self.fullName)) model.fullName: \(String(describing:  self.model.fullName))\n\n")
             self.model.fullName = fullName
         }
     }
@@ -66,11 +66,7 @@ class FormViewModel:ObservableObject  {
         self.coreDataService.load()
         model = coreDataService.form
         self.configureOutputs()
-        self.model.objectWillChange
-            .sink { _ in
-                self.update()
-                self.setHashTable()
-        }.store(in: &cancelable)
+
     }
     deinit {
         self.cancle()
@@ -80,27 +76,38 @@ class FormViewModel:ObservableObject  {
         coreDataService.saveContext()
     }
     
+    func getFieldInfo(for title:String) -> Published<String>.Publisher?  {
+        return hashTable[title]
+    }
+    
+    func cellDidChange( sender: AnyPublisher<CellViewModel,Never> ) {
+        self.aCellDidChange = sender
+        aCellDidChange.setFailureType(to: Error.self)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { (completion) in
+            }) {[weak self] (output) in
+                let title = output.title
+                self?.setFielInfo(for: title, with: output.value)
+                print("\n\n\n>>> FormViewModel cellDidChange sink { output.title: \(output.title), output.value:\(output.value) } ")
+        }.store(in: &cancelable)
+    }
+    
+    
+     func save(){
+         self.coreDataService.saveContext()
+         print("\n\n\n>>> FormViewModel Save()")
+     }
+     
+     
+     func update() {
+         if (!self.model.id.uuidString.isEmpty) {
+             self.firebaseService.update(with: self.model)
+         } else {
+             print("FormViewModel.update: problem updating at Firebase model = nil")
+         }
+     }
+    
     func setHashTable(){
-        self.hashTable2 =  ["Full Name" : fullName,
-                         "Email" : email,
-        "Project Repo": projectRepo,
-        "Project URL" : projectURL,
-        "Combine" : combine,
-        "Communication skills" : communication_skills,
-        "Core Data" : core_data,
-        "Debugging" : debugging,
-        "Intelligence-Aptitude" : intelligence_aptitude,
-        "Memory Management (ARC)" : memory_management_arc,
-        "Modular development" : modular_development,
-        "OOP" : oop,
-        "Problem solving skills" : problem_solving_skills,
-        "Self motivation" : self_motivation,
-        "SwiftUI " : swiftui,
-        "UIKit" : uikit,
-        "Working in a team" : workinginateam,
-        "Testing" : testing,
-        "Your own energy level" : yourownenergylevel]
-        
         self.hashTable =  ["Full Name" : $fullName,
                            "Email" : $email,
           "Project Repo": $projectRepo,
@@ -121,19 +128,6 @@ class FormViewModel:ObservableObject  {
           "Testing" : $testing,
           "Your own energy level" : $yourownenergylevel] as Dictionary<String,Published<String>.Publisher>
     }
-    
-    func save(){
-        self.coreDataService.saveContext()
-    }
-    
-    
-    func update() {
-        if (!self.model.id.uuidString.isEmpty) {
-            self.firebaseService.update(with: self.model)
-        } else {
-            print("FormViewModel.update: problem updating at Firebase model = nil")
-        }
-    }
 
     
 //    func load(){
@@ -143,21 +137,6 @@ class FormViewModel:ObservableObject  {
 //            self.coreDataService.load()
 //        }
 //    }
-    
-    func getFieldInfo(for title:String) -> Published<String>.Publisher?  {
-        return hashTable[title]
-    }
-    
-    func cellDidChange(sender:AnyPublisher<CellViewModel,Never> ) {
-        self.aCellDidChange = sender
-        aCellDidChange.setFailureType(to: Error.self)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { (completion) in
-            }) {[weak self] (output) in
-                let title = output.title
-                self?.setFielInfo(for: title, with: output.value)
-        }.store(in: &cancelable)
-    }
     
     func setFielInfo(for title:String, with text:String) {
         
@@ -285,7 +264,7 @@ class FormViewModel:ObservableObject  {
     }
     
     func cancle(){
-        var canceled: [()] = cancelable.map{ $0.cancel()}
+        _ = cancelable.map{ $0.cancel()}
 
     }
 }

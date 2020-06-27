@@ -36,6 +36,7 @@ class LabelAndFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
         cancelable = cellVM.$value.sink(receiveValue: { (outPutString) in
             self.textField.text =  outPutString
         })
+        cellVM.textDidChange(sender: self.didChange.eraseToAnyPublisher())
     }
     
     
@@ -64,12 +65,10 @@ class LabelAndFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
         return false
     }
     @IBAction func editingChanged(_ sender: UITextField) {
-//        cellVM.textDidChange(sender: self.didChange.eraseToAnyPublisher())
-//        self.didChange.send(sender.text!)
+        cellVM.textDidChange(sender: self.didChange.eraseToAnyPublisher())
         print("LabelAndFieldTableViewCell IBAction editingChanged sender.text: \(String(describing: sender.text))")
     }
     @IBAction func editingDidEnd(_ sender: UITextField) {
-        cellVM.textDidChange(sender: self.didChange.eraseToAnyPublisher())
         self.didChange.send(sender.text!)
     }
     

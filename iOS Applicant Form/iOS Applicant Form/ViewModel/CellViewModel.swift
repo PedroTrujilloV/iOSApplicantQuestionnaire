@@ -23,7 +23,6 @@ class CellViewModel: ObservableObject  {
     private var model:CellModel
     @Published var value:String = ""  {
            didSet {
-                fvm.cellDidChange(sender: cellDidChange.eraseToAnyPublisher())
                print("\n\n\n\n>>>>CellViewModel.value: \(String(describing: self.value))")
            }
        }
@@ -50,10 +49,11 @@ class CellViewModel: ObservableObject  {
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { (completion) in
             }) {[weak self] output in
+                print("\n\n\n>>> CellViewModel textFieldDidChange sink { output \(output) } ")
                 self?.value = output
+                self?.fvm.cellDidChange(sender: (self?.cellDidChange.eraseToAnyPublisher())!)
+                self?.cellDidChange.send(self!) // keep the send here to avoid a Publisher subscriber retained cycle
         }.store(in: &cancelable)
-        self.cellDidChange.send(self) // keep the send here to avoid a Publisher subscriber retained cycle
-
     }
     
     var  titleForCellType:String {
@@ -127,7 +127,7 @@ class CellViewModel: ObservableObject  {
     }
     
     func cancle(){
-      var canceled: [()] = cancelable.map{ $0.cancel()}
+      _ = cancelable.map{ $0.cancel()}
     }
     
     

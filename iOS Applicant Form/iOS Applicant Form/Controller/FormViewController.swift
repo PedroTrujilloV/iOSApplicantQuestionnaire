@@ -14,13 +14,20 @@ class FormViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var submitButton: UIButton!
     @ObservedObject var formVM = FormViewModel()
-    private var subscriptions = Set<AnyCancellable>()
+    private var cancelables = Set<AnyCancellable>()
     var dataSource: UITableViewDiffableDataSource<Section, CellViewModel>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
 //        printFontFamilies()
+    }
+    deinit {
+        
+    }
+    
+    func cancel(){
+        _ = cancelables.map{$0.cancel()}
     }
     
     func printFontFamilies(){

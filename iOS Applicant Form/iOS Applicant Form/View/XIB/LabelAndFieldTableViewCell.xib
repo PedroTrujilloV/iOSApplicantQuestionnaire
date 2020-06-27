@@ -39,6 +39,7 @@
                                 <connections>
                                     <action selector="editingChanged:" destination="KGk-i7-Jjw" eventType="editingChanged" id="Zf3-o4-loD"/>
                                     <action selector="editingDidEnd:" destination="KGk-i7-Jjw" eventType="editingDidEnd" id="suo-5h-VEq"/>
+                                    <outlet property="delegate" destination="-1" id="EsG-11-nzr"/>
                                 </connections>
                             </textField>
                         </subviews>

@@ -15,10 +15,13 @@ import SwiftUI
 class CoreDataService: ObservableObject {
     private var context:NSManagedObjectContext { return self.persistentContainer.viewContext }
     var didChange = PassthroughSubject<CoreDataService,Never>()
-    
+    private var cancelables = Set<AnyCancellable>()
+    private var formdDidChange:AnyPublisher<Form,Never> = PassthroughSubject<Form,Never>().eraseToAnyPublisher()
+
     @Published var form = Form(){
         didSet{
             didChange.send(self)
+            print("\n\n\n\n>>>>CoreDataService didSet form.fullName: \(String(describing:  self.form.fullName))\n\n")
         }
     }
     
@@ -102,7 +105,7 @@ class CoreDataService: ObservableObject {
          do {
              try container.viewContext.setQueryGenerationFrom(.current)
          }catch {
-             print("\n\n\n>>>> persistentContainer: problem setQueryGenerationFrom current:\n \(error)")
+             print("\n\n\n>>>>CoreDataService persistentContainer: problem setQueryGenerationFrom current:\n \(error)")
          }
             container.loadPersistentStores(completionHandler: { (storeDescription, error) in
                 if let error = error as NSError? {
