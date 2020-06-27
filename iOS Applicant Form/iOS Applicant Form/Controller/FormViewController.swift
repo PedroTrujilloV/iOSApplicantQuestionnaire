@@ -10,7 +10,7 @@ import UIKit
 import Combine
 import SwiftUI
 
-class FormViewController: UIViewController {
+class FormViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var submitButton: UIButton!
     @ObservedObject var formVM = FormViewModel()
@@ -34,6 +34,7 @@ class FormViewController: UIViewController {
         registerNibs()
         setupDataSource()
         loadPlistToSnapshot()
+        tableView.keyboardDismissMode = .interactive
     }
     
     private func registerNibs() {
@@ -43,7 +44,8 @@ class FormViewController: UIViewController {
     }
 
     @IBAction func submitButtonTouchUpAction(_ sender: Any) {
-        
+        self.formVM.save()
+        print("\n\n\n\n>>> Saved")
     }
 
 }
@@ -52,7 +54,8 @@ extension FormViewController  {
     
     private func setupDataSource() {
         self.dataSource = UITableViewDiffableDataSource<Section, CellViewModel>(tableView: self.tableView, cellProvider: { (tableView, indexPath, cellVM) -> UITableViewCell? in
-            return cellVM.cellFor(tableView: tableView, at: indexPath)
+            let cell = cellVM.cellFor(tableView: tableView, at: indexPath)
+            return cell
         })
     }
     

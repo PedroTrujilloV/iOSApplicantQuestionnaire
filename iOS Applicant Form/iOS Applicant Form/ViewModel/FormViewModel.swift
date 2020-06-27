@@ -14,19 +14,35 @@ import SwiftUI
 class FormViewModel:ObservableObject  {
     
     @Published private var coreDataService = CoreDataService()
-    private var cancelable:AnyCancellable?
+    private var cancelable = Set<AnyCancellable>()
     private var firebaseService = FirebaseService()
+    private var aCellDidChange:AnyPublisher<CellViewModel,Never> = PassthroughSubject<CellViewModel,Never>().eraseToAnyPublisher()
+    
     @Published private var model = Form() {
         didSet {
-            self.update()
-            self.setHashTable()
+//            self.update()
+//            self.setHashTable()
         }
     }
     private var keys:Array<String> = []
     private var hashTable = Dictionary<String,Published<String>.Publisher>()
-    
-    @Published var email:String = ""
-    @Published var fullName: String = ""
+    private var hashTable2 = Dictionary<String,String>()
+
+    @Published var email:String = "" {
+        didSet {
+            print("\n\n\n\n>>>> FormViewModel didSet email: \(String(describing: self.email))")
+
+            self.model.email = email
+        }
+    }
+    @Published var fullName: String = "" {
+        didSet {
+            print("\n\n\n\n>>>>FormViewModel didSet self.fullName: \(String(describing: self.fullName))")
+            print("\\n>>>>FormViewModel didSet model.fullName: \(String(describing:  self.model.fullName))\n\n")
+
+            self.model.fullName = fullName
+        }
+    }
     @Published var projectURL: String = ""
     @Published var projectRepo: String = ""
     @Published var combine: String = ""
@@ -46,10 +62,18 @@ class FormViewModel:ObservableObject  {
     @Published var yourownenergylevel: String = ""
     
     init() {
-        
+        self.setHashTable()
         self.coreDataService.load()
         model = coreDataService.form
         self.configureOutputs()
+        self.model.objectWillChange
+            .sink { _ in
+                self.update()
+                self.setHashTable()
+        }.store(in: &cancelable)
+    }
+    deinit {
+        self.cancle()
     }
     
     func submit() {
@@ -57,6 +81,26 @@ class FormViewModel:ObservableObject  {
     }
     
     func setHashTable(){
+        self.hashTable2 =  ["Full Name" : fullName,
+                         "Email" : email,
+        "Project Repo": projectRepo,
+        "Project URL" : projectURL,
+        "Combine" : combine,
+        "Communication skills" : communication_skills,
+        "Core Data" : core_data,
+        "Debugging" : debugging,
+        "Intelligence-Aptitude" : intelligence_aptitude,
+        "Memory Management (ARC)" : memory_management_arc,
+        "Modular development" : modular_development,
+        "OOP" : oop,
+        "Problem solving skills" : problem_solving_skills,
+        "Self motivation" : self_motivation,
+        "SwiftUI " : swiftui,
+        "UIKit" : uikit,
+        "Working in a team" : workinginateam,
+        "Testing" : testing,
+        "Your own energy level" : yourownenergylevel]
+        
         self.hashTable =  ["Full Name" : $fullName,
                            "Email" : $email,
           "Project Repo": $projectRepo,
@@ -78,6 +122,10 @@ class FormViewModel:ObservableObject  {
           "Your own energy level" : $yourownenergylevel] as Dictionary<String,Published<String>.Publisher>
     }
     
+    func save(){
+        self.coreDataService.saveContext()
+    }
+    
     
     func update() {
         if (!self.model.id.uuidString.isEmpty) {
@@ -96,8 +144,46 @@ class FormViewModel:ObservableObject  {
 //        }
 //    }
     
-    func formFieldInfoFrom(title:String) ->Published<String>.Publisher?  {
+    func getFieldInfo(for title:String) -> Published<String>.Publisher?  {
         return hashTable[title]
+    }
+    
+    func cellDidChange(sender:AnyPublisher<CellViewModel,Never> ) {
+        self.aCellDidChange = sender
+        aCellDidChange.setFailureType(to: Error.self)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { (completion) in
+            }) {[weak self] (output) in
+                let title = output.title
+                self?.setFielInfo(for: title, with: output.value)
+        }.store(in: &cancelable)
+    }
+    
+    func setFielInfo(for title:String, with text:String) {
+        
+        switch title {
+            case "Full Name": fullName = text
+            case "Email" : email = text
+            case "Project Repo": projectRepo = text
+            case "Project URL" : projectURL = text
+            case "Combine" : combine = text
+            case "Communication skills" : communication_skills = text
+            case "Core Data" : core_data = text
+            case "Debugging" : debugging = text
+            case "Intelligence-Aptitude" : intelligence_aptitude = text
+            case "Memory Management (ARC)" : memory_management_arc = text
+            case "Modular development" : modular_development = text
+            case "OOP" : oop = text
+            case "Problem solving skills" : problem_solving_skills = text
+            case "Self motivation" : self_motivation = text
+            case "SwiftUI " : swiftui = text
+            case "UIKit" : uikit = text
+            case "Working in a team" : workinginateam = text
+            case "Testing" : testing = text
+            case "Your own energy level" : yourownenergylevel = text
+        default:
+            break
+        }
     }
         
     func configureOutputs(){
@@ -120,8 +206,6 @@ class FormViewModel:ObservableObject  {
         yourownenergylevel = getYourownenergylevel()
         testing = getTesting()
         uikit = getUIKit()
-        
-        print("\n\n\n\n>>>> FormViewModel.fullName: \(String(describing: self.fullName))")
     }
     
     private func getEmail() ->String{
@@ -199,6 +283,9 @@ class FormViewModel:ObservableObject  {
     private func getYourownenergylevel() ->String{
         return String(describing:self.model.yourownenergylevel)
     }
+    
+    func cancle(){
+        var canceled: [()] = cancelable.map{ $0.cancel()}
 
-
+    }
 }

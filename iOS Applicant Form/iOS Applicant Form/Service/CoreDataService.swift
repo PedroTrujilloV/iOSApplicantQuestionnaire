@@ -27,6 +27,7 @@ class CoreDataService: ObservableObject {
     }
         
     func updateFrom(from dictionary:Dictionary<String,Any>){
+        //remember: update the form.ts when this operation happens, necessary for validation
         if let email = dictionary["email"] as? String {
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Form")
             request.predicate = NSPredicate(format: "email = %@", email)
@@ -60,6 +61,7 @@ class CoreDataService: ObservableObject {
         form.uikit = dictionary["UIKit"] as? Int16 ?? 0
         form.workinginateam = dictionary["Working in a team"] as? Int16 ?? 0
         form.yourownenergylevel = dictionary["Your own energy level"] as? Int16 ?? 0
+        form.ts = dictionary["ts"] as? Date ?? Date()
     }
     
     func insertForm(from dictionary:Dictionary<String,Any>) {
@@ -79,6 +81,8 @@ class CoreDataService: ObservableObject {
                 print("\n\n\n form.id:\(String(describing: self.form.id)) ")
                 print("form.fullName:\(String(describing: self.form.fullName)) ")
                 print("form.yourownenergylevel:\(String(describing: self.form.yourownenergylevel)) \n\n")
+                print("form.ts:\(String(describing: self.form.ts)) \n\n")
+
             } else {
                 self.makeNewBlankForm()
                 self.load()
@@ -89,6 +93,7 @@ class CoreDataService: ObservableObject {
         let form = Form(context: self.context)
         form.id = UUID()
         form.fullName = "Snipi"
+        form.ts = Date()
         self.saveContext()
     }
 

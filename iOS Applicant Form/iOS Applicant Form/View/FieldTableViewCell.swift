@@ -7,20 +7,48 @@
 //
 
 import UIKit
+import SwiftUI
+import Combine
 
-class FieldTableViewCell: UITableViewCell {
+class FieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
-    
+    private var cancelable: AnyCancellable!
+    @ObservedObject public var cellVM = CellViewModel()
+    private var didChange = PassthroughSubject<String,Never>()
+
     static let reuseIdentifer = "FieldTableViewCell"
     
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        setup()
+        setupBinding ()
     }
+    
+    func setViewModel(cellVM:CellViewModel) {
+           self.cellVM = cellVM
+    }
+    
+    func setupBinding (){
+        cancelable = cellVM.$value
+            .assign(to: \.text!, on: textField)
+        
+//        cellVM.a
+    }
+    
+    
+    deinit {
+        self.cancle()
+    }
+    
+    func cancle(){
+        cancelable?.cancel()
+    }
+    
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        setup()
     }
     private func setup(){
         configureStyle()
@@ -28,6 +56,20 @@ class FieldTableViewCell: UITableViewCell {
     private func configureStyle(){
         textField.font = UIFont(name: "MuseoSans-500", size: 15)
         
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.textField.resignFirstResponder()
+        return false
+    }
+    @IBAction func editingChanged(_ sender: UITextField) {
+//        cellVM.textDidChange(sender: self.didChange.eraseToAnyPublisher())
+//        self.didChange.send(sender.text!)
+        print("FieldTableViewCell IBAction editingChanged sender.text: \(String(describing: sender.text))")
+    }
+    @IBAction func editingDidEnd(_ sender: UITextField) {
+        cellVM.textDidChange(sender: self.didChange.eraseToAnyPublisher())
+        self.didChange.send(sender.text!)
     }
     
 }

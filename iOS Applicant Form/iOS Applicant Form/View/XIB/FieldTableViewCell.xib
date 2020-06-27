@@ -27,6 +27,10 @@
                         <color key="textColor" red="0.066666666669999999" green="0.29411764709999999" blue="0.37254901959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <fontDescription key="fontDescription" name="MuseoSans-500" family="Museo Sans" pointSize="15"/>
                         <textInputTraits key="textInputTraits"/>
+                        <connections>
+                            <action selector="editingChanged:" destination="KGk-i7-Jjw" eventType="editingChanged" id="Va0-z3-M7f"/>
+                            <action selector="editingDidEnd:" destination="KGk-i7-Jjw" eventType="editingDidEnd" id="OTg-XI-uVm"/>
+                        </connections>
                     </textField>
                 </subviews>
                 <constraints>

@@ -18,11 +18,12 @@
         <attribute name="self_motivation" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="swiftui" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="testing" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="ts" attributeType="Date" defaultDateTimeInterval="614835120" usesScalarValueType="NO"/>
         <attribute name="uikit" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="workinginateam" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="yourownenergylevel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Form" positionX="220.6640625" positionY="-152.6015625" width="128" height="343"/>
+        <element name="Form" positionX="220.6640625" positionY="-152.6015625" width="128" height="358"/>
     </elements>
 </model>

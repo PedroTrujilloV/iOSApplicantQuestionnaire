@@ -37,5 +37,6 @@ extension Form {
     @NSManaged public var uikit: Int16
     @NSManaged public var workinginateam: Int16
     @NSManaged public var yourownenergylevel: Int16
+    @NSManaged public var ts: Date
 
 }

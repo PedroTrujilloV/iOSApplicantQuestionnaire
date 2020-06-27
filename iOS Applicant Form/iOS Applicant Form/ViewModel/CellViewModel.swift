@@ -14,18 +14,46 @@ import SwiftUI
 class CellViewModel: ObservableObject  {
     
     let identifier = UUID()
+    private var cancelable = Set<AnyCancellable>()
     
-    private var cancelable:AnyCancellable?
-        
+    @ObservedObject private var fvm = FormViewModel()
+    private var textFieldDidChange:AnyPublisher<String,Never> = PassthroughSubject<String,Never>().eraseToAnyPublisher()
+    private var cellDidChange = PassthroughSubject<CellViewModel,Never>()
+    
     private var model:CellModel
-    @Published var value:String = ""
+    @Published var value:String = ""  {
+           didSet {
+                fvm.cellDidChange(sender: cellDidChange.eraseToAnyPublisher())
+               print("\n\n\n\n>>>>CellViewModel.value: \(String(describing: self.value))")
+           }
+       }
 
+    init() {
+        model = CellModel(type: "", title: "")
+    }
+    
     init(cellModel:CellModel) {
         model = cellModel
     }
     
+    deinit {
+        self.cancle()
+    }
+    
     var title:String {
         return model.title
+    }
+    
+    public func textDidChange(sender:AnyPublisher<String,Never>){
+        self.textFieldDidChange = sender
+        self.textFieldDidChange.setFailureType(to: Error.self)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { (completion) in
+            }) {[weak self] output in
+                self?.value = output
+        }.store(in: &cancelable)
+        self.cellDidChange.send(self) // keep the send here to avoid a Publisher subscriber retained cycle
+
     }
     
     var  titleForCellType:String {
@@ -61,6 +89,9 @@ class CellViewModel: ObservableObject  {
                     if let aCell = tableView.dequeueReusableCell(withIdentifier: FieldTableViewCell.reuseIdentifer, for: indexPath) as? FieldTableViewCell {
                         aCell.textField.placeholder = self.titleForCellType
                         aCell.textField.text = self.value
+//                       cancelable = fvm.getFieldInfo(for: self.title)?
+//                        .assign(to: \.text!, on: aCell.textField).self
+                        aCell.setViewModel(cellVM: self)
                         return aCell
                     }
                     break;
@@ -68,12 +99,16 @@ class CellViewModel: ObservableObject  {
                     if let aCell = tableView.dequeueReusableCell(withIdentifier: LabelAndFieldTableViewCell.reuseIdentifer, for: indexPath) as? LabelAndFieldTableViewCell {
                         aCell.title.text = self.title
                         aCell.textField.text = self.value
+//                        cancelable = fvm.getFieldInfo(for: self.title)?
+//                        .assign(to: \.text!, on: aCell.textField).self
+                        aCell.setViewModel(cellVM: self)
                         return aCell
                     }
                     break;
                 case .ButtonCellStype:
                     if let aCell = tableView.dequeueReusableCell(withIdentifier: ButtonTableViewCell.reuseIdentifer, for: indexPath) as? ButtonTableViewCell {
                         aCell.button.setTitle(self.titleForCellType, for: .normal)
+                        aCell.setViewModel(cellVM: self)
                         return aCell
                 }
                 break;
@@ -85,15 +120,14 @@ class CellViewModel: ObservableObject  {
     
     
     func makeBinding(with formVM:FormViewModel) {
-        cancelable = formVM.formFieldInfoFrom(title: self.title)?
-            .assign(to: \.value, on: self).self
-        print("\n\n\n\n>>> cancelable: \(String(describing: cancelable))")
-        print("\n\n\n\n>>> value: \(String(describing: self.value))")
-
+        self.fvm = formVM
+        fvm.getFieldInfo(for: self.title)?
+            .assign(to: \.value, on: self)
+        .store(in: &cancelable)
     }
     
     func cancle(){
-        cancelable?.cancel()
+      var canceled: [()] = cancelable.map{ $0.cancel()}
     }
     
     

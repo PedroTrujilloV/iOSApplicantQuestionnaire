@@ -7,21 +7,48 @@
 //
 
 import UIKit
+import SwiftUI
+import Combine
 
-class LabelAndFieldTableViewCell: UITableViewCell {
+class LabelAndFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var textField: UITextField!
+    private var cancelable: AnyCancellable!
+    @ObservedObject public var cellVM = CellViewModel()
+    private var didChange = PassthroughSubject<String,Never>()
+
+    
     
     static let reuseIdentifer = "LabelAndFieldTableViewCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        setup()
+        setupBinding ()
     }
-
+    
+    func setViewModel(cellVM:CellViewModel) {
+           self.cellVM = cellVM
+    }
+    
+    func setupBinding (){
+        cancelable = cellVM.$value.sink(receiveValue: { (outPutString) in
+            self.textField.text =  outPutString
+        })
+    }
+    
+    
+    deinit {
+        self.cancle()
+    }
+    
+    func cancle(){
+        cancelable?.cancel()
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        setup()
     }
     private func setup(){
         configureStyle()
@@ -31,4 +58,19 @@ class LabelAndFieldTableViewCell: UITableViewCell {
         textField.font = UIFont(name: "MuseoSans-500", size: 15)
         title.font = UIFont(name: "MuseoSans-500", size: 15)
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.textField.resignFirstResponder()
+        return false
+    }
+    @IBAction func editingChanged(_ sender: UITextField) {
+//        cellVM.textDidChange(sender: self.didChange.eraseToAnyPublisher())
+//        self.didChange.send(sender.text!)
+        print("LabelAndFieldTableViewCell IBAction editingChanged sender.text: \(String(describing: sender.text))")
+    }
+    @IBAction func editingDidEnd(_ sender: UITextField) {
+        cellVM.textDidChange(sender: self.didChange.eraseToAnyPublisher())
+        self.didChange.send(sender.text!)
+    }
+    
 }

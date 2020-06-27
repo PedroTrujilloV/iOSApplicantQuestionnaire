@@ -33,8 +33,9 @@ class FirebaseService {
      }
     
     func makeUpdates(with form:Form) ->[String:Any] {
-        print("\n\nFirebaseService.makeUpdates for form with id: \(String(describing: form.id))")
-        return  ["\(String(describing: form.id))/fullName" : form.fullName ,
+        //print("\n\nFirebaseService.makeUpdates for form with id: \(String(describing: form.id))")
+        return  ["\(String(describing: form.id))/ts" : form.ts.timeIntervalSince1970,//String(describing: form.ts) ,
+                 "\(String(describing: form.id))/fullName" : form.fullName ,
                  "\(String(describing: form.id))/email" : form.email ,
                  "\(String(describing: form.id))/projectRepo": form.projectRepo ,
                  "\(String(describing: form.id))/projectURL" : form.projectURL ,

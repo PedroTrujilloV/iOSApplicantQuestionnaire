@@ -14,8 +14,8 @@
 		37493CC824A026C6001B8048 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37493CC724A026C6001B8048 /* CoreDataService.swift */; };
 		37493CCE24A0518E001B8048 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37493CCD24A0518E001B8048 /* FirebaseService.swift */; };
 		37493CD124A07A8D001B8048 /* CoreDataServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37493CD024A07A8D001B8048 /* CoreDataServiceDelegate.swift */; };
-		374A31AB24A58B68009C07BF /* Form+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A31A924A58B68009C07BF /* Form+CoreDataClass.swift */; };
-		374A31AC24A58B68009C07BF /* Form+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A31AA24A58B68009C07BF /* Form+CoreDataProperties.swift */; };
+		374A31B324A5A544009C07BF /* Form+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A31B124A5A544009C07BF /* Form+CoreDataClass.swift */; };
+		374A31B424A5A544009C07BF /* Form+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374A31B224A5A544009C07BF /* Form+CoreDataProperties.swift */; };
 		3773D273249ABDDB00B63978 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3773D272249ABDDB00B63978 /* AppDelegate.swift */; };
 		3773D275249ABDDB00B63978 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3773D274249ABDDB00B63978 /* SceneDelegate.swift */; };
 		3773D27A249ABDDB00B63978 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3773D278249ABDDB00B63978 /* Main.storyboard */; };
@@ -71,8 +71,8 @@
 		37493CC724A026C6001B8048 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		37493CCD24A0518E001B8048 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		37493CD024A07A8D001B8048 /* CoreDataServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceDelegate.swift; sourceTree = "<group>"; };
-		374A31A924A58B68009C07BF /* Form+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		374A31AA24A58B68009C07BF /* Form+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		374A31B124A5A544009C07BF /* Form+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		374A31B224A5A544009C07BF /* Form+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Form+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		3773D26F249ABDDB00B63978 /* iOS Applicant Form.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Applicant Form.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3773D272249ABDDB00B63978 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3773D274249ABDDB00B63978 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -167,8 +167,8 @@
 		37493C9C249FCAD0001B8048 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				374A31A924A58B68009C07BF /* Form+CoreDataClass.swift */,
-				374A31AA24A58B68009C07BF /* Form+CoreDataProperties.swift */,
+				374A31B124A5A544009C07BF /* Form+CoreDataClass.swift */,
+				374A31B224A5A544009C07BF /* Form+CoreDataProperties.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -590,12 +590,12 @@
 				37AE00A7249D38550046D03E /* FormCellType.swift in Sources */,
 				37493CC824A026C6001B8048 /* CoreDataService.swift in Sources */,
 				37AE00AC249D47400046D03E /* ButtonTableViewCell.swift in Sources */,
-				374A31AB24A58B68009C07BF /* Form+CoreDataClass.swift in Sources */,
+				374A31B324A5A544009C07BF /* Form+CoreDataClass.swift in Sources */,
 				373EB5AE24A0800500AFA79F /* FirebaseServiceDelegate.swift in Sources */,
 				37493CCE24A0518E001B8048 /* FirebaseService.swift in Sources */,
 				3773D275249ABDDB00B63978 /* SceneDelegate.swift in Sources */,
 				37AE00B9249DB9B10046D03E /* CellModel.swift in Sources */,
-				374A31AC24A58B68009C07BF /* Form+CoreDataProperties.swift in Sources */,
+				374A31B424A5A544009C07BF /* Form+CoreDataProperties.swift in Sources */,
 				37AE00B5249D798B0046D03E /* CellViewModel.swift in Sources */,
 				37AE00A0249D24740046D03E /* FormDataModel.swift in Sources */,
 			);
