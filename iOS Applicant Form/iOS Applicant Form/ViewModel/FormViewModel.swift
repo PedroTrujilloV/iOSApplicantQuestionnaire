@@ -22,7 +22,7 @@ class FormViewModel:ObservableObject  {
     @Published private var model = Form() {
         didSet {
 //            self.update()
-//            self.setHashTable()
+            self.setHashTable()
             print("\n\n\n\n>>>>FormViewModel didSet model(Form).fullName: \(String(describing:  self.model.fullName))\n\n")
 
         }
@@ -33,7 +33,6 @@ class FormViewModel:ObservableObject  {
 
     @Published var email:String = "" {
         didSet {
-            print("\n\n\n\n>>>>FormViewModel didSet self.fullName: \(String(describing: self.fullName)) model.fullName: \(String(describing:  self.model.fullName))\n\n")
             self.model.email = email
         }
     }
@@ -43,23 +42,91 @@ class FormViewModel:ObservableObject  {
             self.model.fullName = fullName
         }
     }
-    @Published var projectURL: String = ""
-    @Published var projectRepo: String = ""
-    @Published var combine: String = ""
-    @Published var communication_skills: String = ""
-    @Published var core_data: String = ""
-    @Published var debugging: String = ""
-    @Published var intelligence_aptitude: String = ""
-    @Published var memory_management_arc: String = ""
-    @Published var modular_development: String = ""
-    @Published var oop: String = ""
-    @Published var problem_solving_skills: String = ""
-    @Published var self_motivation: String = ""
-    @Published var swiftui: String = ""
-    @Published var testing: String = ""
-    @Published var uikit: String = ""
-    @Published var workinginateam: String = ""
-    @Published var yourownenergylevel: String = ""
+    @Published var projectURL: String = "" {
+        didSet {
+            self.model.projectURL = projectURL
+        }
+    }
+    @Published var projectRepo: String = ""{
+        didSet {
+            self.model.projectRepo = projectRepo
+        }
+    }
+    @Published var combine: String = ""{
+        didSet {
+            self.model.combine = Int16(combine)!
+        }
+    }
+    @Published var communication_skills: String = ""{
+        didSet {
+            self.model.communication_skills = Int16(communication_skills)!
+        }
+    }
+    @Published var core_data: String = ""{
+        didSet {
+            self.model.core_data = Int16(core_data)!
+        }
+    }
+    @Published var debugging: String = ""{
+        didSet {
+            self.model.debugging = Int16(debugging)!
+        }
+    }
+    @Published var intelligence_aptitude: String = ""{
+        didSet {
+            self.model.intelligence_aptitude = Int16(intelligence_aptitude)!
+        }
+    }
+    @Published var memory_management_arc: String = ""{
+        didSet {
+            self.model.memory_management_arc = Int16(memory_management_arc)!
+        }
+    }
+    @Published var modular_development: String = ""{
+        didSet {
+            self.model.modular_development = Int16(modular_development)!
+        }
+    }
+    @Published var oop: String = ""{
+        didSet {
+            self.model.oop = Int16(oop)!
+        }
+    }
+    @Published var problem_solving_skills: String = ""{
+        didSet {
+            self.model.problem_solving_skills = Int16(problem_solving_skills)!
+        }
+    }
+    @Published var self_motivation: String = ""{
+        didSet {
+            self.model.self_motivation = Int16(self_motivation)!
+        }
+    }
+    @Published var swiftui: String = ""{
+        didSet {
+            self.model.swiftui = Int16(swiftui)!
+        }
+    }
+    @Published var testing: String = ""{
+        didSet {
+            self.model.testing = Int16(testing)!
+        }
+    }
+    @Published var uikit: String = ""{
+        didSet {
+            self.model.uikit = Int16(uikit)!
+        }
+    }
+    @Published var workinginateam: String = ""{
+        didSet {
+            self.model.workinginateam = Int16(workinginateam)!
+        }
+    }
+    @Published var yourownenergylevel: String = ""{
+        didSet {
+            self.model.yourownenergylevel = Int16(yourownenergylevel)!
+        }
+    }
     
     init() {
         self.setHashTable()

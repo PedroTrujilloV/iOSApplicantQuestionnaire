@@ -10,7 +10,7 @@ import UIKit
 import Combine
 import SwiftUI
 
-class FormViewController: UIViewController,UITextFieldDelegate {
+class FormViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var submitButton: UIButton!
     @ObservedObject var formVM = FormViewModel()
@@ -20,23 +20,16 @@ class FormViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-//        printFontFamilies()
     }
+    
     deinit {
-        
+        self.cancel()
     }
     
     func cancel(){
         _ = cancelables.map{$0.cancel()}
     }
-    
-    func printFontFamilies(){
-        for familyString in UIFont.familyNames {
-            for fontName in UIFont.fontNames(forFamilyName: familyString) {
-                print("\n> fontName: \(fontName)")
-            }
-        }
-    }
+
     private func setup() {
         registerNibs()
         setupDataSource()
@@ -57,48 +50,4 @@ class FormViewController: UIViewController,UITextFieldDelegate {
 
 }
 
-extension FormViewController  {
-    
-    private func setupDataSource() {
-        self.dataSource = UITableViewDiffableDataSource<Section, CellViewModel>(tableView: self.tableView, cellProvider: { (tableView, indexPath, cellVM) -> UITableViewCell? in
-            let cell = cellVM.cellFor(tableView: tableView, at: indexPath)
-            return cell
-        })
-    }
-    
-    private func loadPlistToSnapshot() {
-        if let url = Bundle.main.url(forResource: "form", withExtension: "plist") {
-            do {
-                var cellVMs: [CellViewModel] = []
-                if let data =  try? Data(contentsOf: url) {
-                    let decoder = PropertyListDecoder()
-                    cellVMs = try decoder.decode([CellModel].self, from: data)
-                        .map({ (cellM) -> CellViewModel in
-                            let aCellVM = CellViewModel(cellModel: cellM)
-                            aCellVM.makeBinding(with: formVM)
-                            return aCellVM
-                        })
-                }
-                //print("cellVM: \(cellVM)")
-                snapshotForCurrentState(cells: cellVMs)
-            } catch {
-                print("FormViewController.loadPlist(): problem \(error)")
-            }
-        }
-    }
-    
-    private func snapshotForCurrentState(cells:[CellViewModel]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, CellViewModel>()
-        snapshot.appendSections([.Form])
-        snapshot.appendItems(cells)
-        self.dataSource.apply(snapshot,animatingDifferences: true)
-    }
-}
-
-extension FormViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-//        self
-    }
-    
-}
 
