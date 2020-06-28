@@ -44,7 +44,8 @@ class FormViewController: UIViewController {
     }
 
     @IBAction func submitButtonTouchUpAction(_ sender: Any) {
-        self.formVM.save()
+        self.formVM.submit()
+        self.tableView.reloadData()
         print("\n\n\n\n>>> Saved")
     }
 

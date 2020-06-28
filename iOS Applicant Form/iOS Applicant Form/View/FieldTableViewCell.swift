@@ -18,7 +18,6 @@ class FieldTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     static let reuseIdentifer = "FieldTableViewCell"
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -35,7 +34,6 @@ class FieldTableViewCell: UITableViewCell, UITextFieldDelegate {
             .assign(to: \.text!, on: textField)
     }
     
-    
     deinit {
         self.cancle()
     }
@@ -44,7 +42,6 @@ class FieldTableViewCell: UITableViewCell, UITextFieldDelegate {
         cancelable?.cancel()
     }
     
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -53,7 +50,6 @@ class FieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     private func configureStyle(){
         textField.font = UIFont(name: "MuseoSans-500", size: 15)
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -61,7 +57,6 @@ class FieldTableViewCell: UITableViewCell, UITextFieldDelegate {
         return false
     }
     @IBAction func editingChanged(_ sender: UITextField) {
-//        cellVM.textDidChange(sender: self.didChange.eraseToAnyPublisher())
         print("FieldTableViewCell IBAction editingChanged sender.text: \(String(describing: sender.text))")
     }
     @IBAction func editingDidEnd(_ sender: UITextField) {

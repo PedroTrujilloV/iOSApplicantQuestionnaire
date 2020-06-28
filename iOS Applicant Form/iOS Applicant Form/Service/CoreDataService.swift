@@ -16,7 +16,6 @@ class CoreDataService: ObservableObject {
     private var context:NSManagedObjectContext { return self.persistentContainer.viewContext }
     var didChange = PassthroughSubject<CoreDataService,Never>()
     private var cancelables = Set<AnyCancellable>()
-    private var formdDidChange:AnyPublisher<Form,Never> = PassthroughSubject<Form,Never>().eraseToAnyPublisher()
 
     @Published var form = Form(){
         didSet{
@@ -30,7 +29,7 @@ class CoreDataService: ObservableObject {
     }
         
     func updateFrom(from dictionary:Dictionary<String,Any>){
-        //remember: update the form.ts when this operation happens, necessary for validation
+        //TO-DO since june 18 /20: update the form.ts when this operation happens, necessary for validation
         if let email = dictionary["email"] as? String {
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Form")
             request.predicate = NSPredicate(format: "email = %@", email)
@@ -77,27 +76,36 @@ class CoreDataService: ObservableObject {
      }
      
     func load() {
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Form")
-            if let forms = try? self.context.fetch(request) as? [Form], !forms.isEmpty  {
-                print("\n\n\n forms.count:\(forms.count) ")
-                self.form = forms.first!
-                print("\n\n\n form.id:\(String(describing: self.form.id)) ")
-                print("form.fullName:\(String(describing: self.form.fullName)) ")
-                print("form.yourownenergylevel:\(String(describing: self.form.yourownenergylevel)) \n\n")
-                print("form.ts:\(String(describing: self.form.ts)) \n\n")
-
-            } else {
-                self.makeNewBlankForm()
-                self.load()
-            }
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Form")
+        if let forms = try? self.context.fetch(request) as? [Form], !forms.isEmpty  {
+            print("\n\n\n forms.count:\(forms.count) ")
+            self.form = forms.first!
+        } else {
+            self.makeNewBlankForm()
+            self.load()
+        }
      }
     
     private func makeNewBlankForm() {
         let form = Form(context: self.context)
         form.id = UUID()
-        form.fullName = "Snipi"
         form.ts = Date()
         self.saveContext()
+    }
+    
+    
+    func delete(){
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Form")
+        if let forms = try? self.context.fetch(request) as? [Form], !forms.isEmpty  {
+            for form in forms {
+                self.context.delete(form as Form)
+            }
+            self.saveContext()
+            self.makeNewBlankForm()
+            self.load()
+        } else {
+            print("\n\n\n>>>CoreDataService.delete: Problem deleting")
+        }
     }
 
        private lazy var persistentContainer: NSPersistentContainer = {

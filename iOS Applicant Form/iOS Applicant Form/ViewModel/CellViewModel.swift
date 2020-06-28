@@ -22,10 +22,10 @@ class CellViewModel: ObservableObject  {
     
     private var model:CellModel
     @Published var value:String = ""  {
-           didSet {
-               print("\n\n\n\n>>>>CellViewModel.value: \(String(describing: self.value))")
-           }
+       didSet {
+           print("\n\n\n\n>>>>CellViewModel.value: \(String(describing: self.value))")
        }
+    }
 
     init() {
         model = CellModel(type: "", title: "")
@@ -68,7 +68,6 @@ class CellViewModel: ObservableObject  {
             return model.title
         }
     }
-
     
     var type:FormCellType {
         switch model.type {
@@ -89,8 +88,6 @@ class CellViewModel: ObservableObject  {
                     if let aCell = tableView.dequeueReusableCell(withIdentifier: FieldTableViewCell.reuseIdentifer, for: indexPath) as? FieldTableViewCell {
                         aCell.textField.placeholder = self.titleForCellType
                         aCell.textField.text = self.value
-//                       cancelable = fvm.getFieldInfo(for: self.title)?
-//                        .assign(to: \.text!, on: aCell.textField).self
                         aCell.setViewModel(cellVM: self)
                         return aCell
                     }
@@ -99,8 +96,6 @@ class CellViewModel: ObservableObject  {
                     if let aCell = tableView.dequeueReusableCell(withIdentifier: LabelAndFieldTableViewCell.reuseIdentifer, for: indexPath) as? LabelAndFieldTableViewCell {
                         aCell.title.text = self.title
                         aCell.textField.text = self.value
-//                        cancelable = fvm.getFieldInfo(for: self.title)?
-//                        .assign(to: \.text!, on: aCell.textField).self
                         aCell.setViewModel(cellVM: self)
                         return aCell
                     }
@@ -118,7 +113,6 @@ class CellViewModel: ObservableObject  {
          return UITableViewCell()
     }
     
-    
     func makeBinding(with formVM:FormViewModel) {
         self.fvm = formVM
         fvm.getFieldInfo(for: self.title)?
@@ -129,9 +123,6 @@ class CellViewModel: ObservableObject  {
     func cancle(){
       _ = cancelable.map{ $0.cancel()}
     }
-    
-    
-    
 
 }
 extension CellViewModel: Hashable {

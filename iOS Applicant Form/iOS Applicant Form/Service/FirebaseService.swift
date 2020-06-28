@@ -15,7 +15,6 @@ class FirebaseService {
          let dbRef = Database.database().reference()
         dbRef.child(" make the form id here").observeSingleEvent(of: DataEventType.value) { (snapshot) in
            if let dict = snapshot.value as? Dictionary<String,Any> {
-//                 print("\n\n\n>>>>loadFromFirebase resutl: \(dict)")
                 let keys = Array(dict.keys)
                 completion(dict,keys)
              } else {
@@ -23,18 +22,15 @@ class FirebaseService {
            }
          }
      }
-    
-
      
     func update(with form:Form){
          let dbRef = Database.database().reference()
         let updates: [String:Any] = makeUpdates(with: form)
-        dbRef.updateChildValues(updates) 
+        dbRef.updateChildValues(updates)
      }
     
     func makeUpdates(with form:Form) ->[String:Any] {
-        //print("\n\nFirebaseService.makeUpdates for form with id: \(String(describing: form.id))")
-        return  ["\(String(describing: form.id))/ts" : form.ts.timeIntervalSince1970,//String(describing: form.ts) ,
+        return  ["\(String(describing: form.id))/ts" : form.ts.timeIntervalSince1970,
                  "\(String(describing: form.id))/fullName" : form.fullName ,
                  "\(String(describing: form.id))/email" : form.email ,
                  "\(String(describing: form.id))/projectRepo": form.projectRepo ,
@@ -55,34 +51,5 @@ class FirebaseService {
           "\(String(describing: form.id))/Working in a team" : form.workinginateam,
           "\(String(describing: form.id))/Your own energy level" : form.yourownenergylevel]
     }
-    
-
-    func insert() {
-         let dbRef = Database.database().reference()
-         let randN = Int.random(in: 0 ..< 2000)
-         dbRef.childByAutoId().setValue(["id":randN])
-         
-         //necessary to decode before insert
-     }
-    
-    /*
-        private func loadData() {
-            let dbRef = Database.database().reference()
-              dbRef.child("\(String(describing: form.id))").observeSingleEvent(of: DataEventType.value) { (snapshot) in
-                if let dict = snapshot.value as? Dictionary<String,Any> {
-                    do {
-                        let jsonData = try JSONSerialization.data(withJSONObject: dict, options: [])
-                        let decoder = JSONDecoder()
-                        let result = try decoder.decode(FormDataModel.self, from: jsonData)
-                        print("\n\n\n>>>>result \(result)")
-                    } catch  {
-                        print("\n\n\n>>>>loadData Exception: problem loading data from firebase: \(error)")
-                    }
-                  } else {
-                    print("\n\n\n>>>>problem loading data from firebase")
-                }
-              }
-        }
- */
     
 }

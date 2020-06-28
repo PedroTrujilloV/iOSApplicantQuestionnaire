@@ -16,8 +16,6 @@ class LabelAndFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     private var cancelable: AnyCancellable!
     @ObservedObject public var cellVM = CellViewModel()
     private var didChange = PassthroughSubject<String,Never>()
-
-    
     
     static let reuseIdentifer = "LabelAndFieldTableViewCell"
     
@@ -39,7 +37,6 @@ class LabelAndFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
         cellVM.textDidChange(sender: self.didChange.eraseToAnyPublisher())
     }
     
-    
     deinit {
         self.cancle()
     }
@@ -51,9 +48,11 @@ class LabelAndFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
     private func setup(){
         configureStyle()
     }
+    
     private func configureStyle(){
         textField.keyboardType = UIKeyboardType.numberPad
         textField.font = UIFont(name: "MuseoSans-500", size: 15)
@@ -64,10 +63,12 @@ class LabelAndFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
         self.textField.resignFirstResponder()
         return false
     }
+    
     @IBAction func editingChanged(_ sender: UITextField) {
         cellVM.textDidChange(sender: self.didChange.eraseToAnyPublisher())
         print("LabelAndFieldTableViewCell IBAction editingChanged sender.text: \(String(describing: sender.text))")
     }
+    
     @IBAction func editingDidEnd(_ sender: UITextField) {
         self.didChange.send(sender.text!)
     }
