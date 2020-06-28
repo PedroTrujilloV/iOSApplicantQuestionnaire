@@ -35,7 +35,6 @@ extension FormViewController  {
                             return aCellVM
                         })
                 }
-                //print("cellVM: \(cellVM)")
                 snapshotForCurrentState(cells: cellVMs)
             } catch {
                 print("FormViewController.loadPlist(): problem \(error)")
