@@ -38,6 +38,7 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="editingChanged:" destination="KGk-i7-Jjw" eventType="editingChanged" id="Zf3-o4-loD"/>
+                                    <action selector="editingDidBegin:" destination="KGk-i7-Jjw" eventType="editingDidBegin" id="x9x-21-4to"/>
                                     <action selector="editingDidEnd:" destination="KGk-i7-Jjw" eventType="editingDidEnd" id="suo-5h-VEq"/>
                                     <outlet property="delegate" destination="-1" id="EsG-11-nzr"/>
                                 </connections>

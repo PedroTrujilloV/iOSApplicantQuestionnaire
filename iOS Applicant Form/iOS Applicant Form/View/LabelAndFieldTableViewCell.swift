@@ -31,8 +31,13 @@ class LabelAndFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func setupBinding (){
-        cancelable = cellVM.$value.sink(receiveValue: { (outPutString) in
-            self.textField.text =  outPutString
+        cancelable = cellVM.$value
+//            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: {[weak self] (outPutString) in
+                self?.textField.text =  outPutString
+                if (outPutString == "0"){
+                    self?.textField.text = ""
+                }
         })
         cellVM.textDidChange(sender: self.didChange.eraseToAnyPublisher())
     }
@@ -54,6 +59,7 @@ class LabelAndFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     private func configureStyle(){
+        textField.placeholder = "0"
         textField.keyboardType = UIKeyboardType.numberPad
         textField.font = UIFont(name: "MuseoSans-500", size: 15)
         title.font = UIFont(name: "MuseoSans-500", size: 15)
@@ -70,7 +76,22 @@ class LabelAndFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     @IBAction func editingDidEnd(_ sender: UITextField) {
-        self.didChange.send(sender.text!)
+        let validated = sender.text!.components(separatedBy: CharacterSet.decimalDigits.inverted).joined(separator: "")
+
+        self.didChange.send(validated)
+        cancelable = cellVM.$value
+//            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self]  (outPutString) in
+                self?.textField.text =  outPutString
+                if (outPutString == "0"){
+                    self?.textField.text = ""
+                }
+        })
+    }
+    @IBAction func editingDidBegin(_ sender: UITextField) {
+        if (sender.text == "0"){
+            self.textField.text = ""
+        }
     }
     
 }

@@ -31,6 +31,7 @@ class FieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     func setupBinding (){
         cancelable = cellVM.$value
+//            .receive(on: DispatchQueue.main)
             .assign(to: \.text!, on: textField)
     }
     

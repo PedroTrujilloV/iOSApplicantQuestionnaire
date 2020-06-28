@@ -23,7 +23,6 @@ class CellViewModel: ObservableObject  {
     private var model:CellModel
     @Published var value:String = ""  {
        didSet {
-           print("\n\n\n\n>>>>CellViewModel.value: \(String(describing: self.value))")
        }
     }
 
@@ -44,6 +43,7 @@ class CellViewModel: ObservableObject  {
     }
     
     public func textDidChange(sender:AnyPublisher<String,Never>){
+        validateValue()
         self.textFieldDidChange = sender
         self.textFieldDidChange.setFailureType(to: Error.self)
             .receive(on: DispatchQueue.main)
@@ -51,9 +51,20 @@ class CellViewModel: ObservableObject  {
             }) {[weak self] output in
                 print("\n\n\n>>> CellViewModel textFieldDidChange sink { output \(output) } ")
                 self?.value = output
+                self?.validateValue()
                 self?.fvm.cellDidChange(sender: (self?.cellDidChange.eraseToAnyPublisher())!)
                 self?.cellDidChange.send(self!) // keep the send here to avoid a Publisher subscriber retained cycle
+
         }.store(in: &cancelable)
+    }
+    
+    func validateValue(){
+        if !self.value.isEmpty {
+            if type == .LabelAndFieldCellType {
+                self.value = Int(value)! > 50 ? "50" : value
+                self.value = Int(value)! <= 0 ? "" : value
+            }
+        }
     }
     
     var  titleForCellType:String {
@@ -116,8 +127,12 @@ class CellViewModel: ObservableObject  {
     func makeBinding(with formVM:FormViewModel) {
         self.fvm = formVM
         fvm.getFieldInfo(for: self.title)?
+//            .receive(on: DispatchQueue.main)
+            .handleEvents(receiveCompletion: { [weak self] (completion) in
+            self?.validateValue()
+            })
             .assign(to: \.value, on: self)
-        .store(in: &cancelable)
+            .store(in: &cancelable)
     }
     
     func cancle(){

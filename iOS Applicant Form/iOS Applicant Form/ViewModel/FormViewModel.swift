@@ -49,77 +49,77 @@ class FormViewModel:ObservableObject  {
     }
     @Published var combine: String = ""{
         didSet {
-            self.model.combine = Int16(combine)!
+            self.model.combine = Int16(combine) ?? 0 //self.model.combine
         }
     }
     @Published var communication_skills: String = ""{
         didSet {
-            self.model.communication_skills = Int16(communication_skills)!
+            self.model.communication_skills = Int16(communication_skills) ?? 0 //self.model.communication_skills
         }
     }
     @Published var core_data: String = ""{
         didSet {
-            self.model.core_data = Int16(core_data)!
+            self.model.core_data = Int16(core_data) ?? 0 //self.model.core_data
         }
     }
     @Published var debugging: String = ""{
         didSet {
-            self.model.debugging = Int16(debugging)!
+            self.model.debugging = Int16(debugging) ?? 0 //self.model.debugging
         }
     }
     @Published var intelligence_aptitude: String = ""{
         didSet {
-            self.model.intelligence_aptitude = Int16(intelligence_aptitude)!
+            self.model.intelligence_aptitude = Int16(intelligence_aptitude) ?? 0 //self.model.intelligence_aptitude
         }
     }
     @Published var memory_management_arc: String = ""{
         didSet {
-            self.model.memory_management_arc = Int16(memory_management_arc)!
+            self.model.memory_management_arc = Int16(memory_management_arc) ?? 0 //self.model.memory_management_arc
         }
     }
     @Published var modular_development: String = ""{
         didSet {
-            self.model.modular_development = Int16(modular_development)!
+            self.model.modular_development = Int16(modular_development) ?? 0 //self.model.modular_development
         }
     }
     @Published var oop: String = ""{
         didSet {
-            self.model.oop = Int16(oop)!
+            self.model.oop = Int16(oop) ?? 0 //self.model.oop
         }
     }
     @Published var problem_solving_skills: String = ""{
         didSet {
-            self.model.problem_solving_skills = Int16(problem_solving_skills)!
+            self.model.problem_solving_skills = Int16(problem_solving_skills) ?? 0 //self.model.problem_solving_skills
         }
     }
     @Published var self_motivation: String = ""{
         didSet {
-            self.model.self_motivation = Int16(self_motivation)!
+            self.model.self_motivation = Int16(self_motivation)  ?? 0 //self.model.self_motivation
         }
     }
     @Published var swiftui: String = ""{
         didSet {
-            self.model.swiftui = Int16(swiftui)!
+            self.model.swiftui = Int16(swiftui) ?? 0 //self.model.swiftui
         }
     }
     @Published var testing: String = ""{
         didSet {
-            self.model.testing = Int16(testing)!
+            self.model.testing = Int16(testing) ?? 0 //self.model.testing
         }
     }
     @Published var uikit: String = ""{
         didSet {
-            self.model.uikit = Int16(uikit)!
+            self.model.uikit = Int16(uikit) ?? 0 //self.model.uikit
         }
     }
     @Published var workinginateam: String = ""{
         didSet {
-            self.model.workinginateam = Int16(workinginateam)!
+            self.model.workinginateam = Int16(workinginateam) ?? 0 //self.model.workinginateam
         }
     }
     @Published var yourownenergylevel: String = ""{
         didSet {
-            self.model.yourownenergylevel = Int16(yourownenergylevel)!
+            self.model.yourownenergylevel = Int16(yourownenergylevel) ?? 0 //self.model.yourownenergylevel
         }
     }
     
